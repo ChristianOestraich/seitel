@@ -1,0 +1,30 @@
+---
+import Fale from '../assets/Fale.png'
+import { Image } from 'astro:assets';
+---
+
+<section class="px-[10%] py-20 bg-[#f3f7fb]">
+    <div>
+        <div class="flex md:flex-row max-lg:flex-col max-lg:gap-8 justify-center items-center">
+            <div class="md:w-[60%]">
+                <h2 class="text-primary text-lg max-lg:text-center">FALE CONOSCO</h2>
+                <h3 class="font-bold text-4xl mt-4 text-black max-lg:text-center">FALE CONOSCO</h3>
+                <form class="flex flex-col gap-5 mt-8" action="">
+                    <div class="flex md:flex-row gap-5">
+                        <input type="text" placeholder="Nome">
+                        <input type="text" placeholder="Telefone">
+                    </div>
+                    <div class="flex md:flex-row gap-5">
+                        <input type="text" placeholder="E-mail">
+                        <input type="text" placeholder="CEP">
+                    </div>
+                    <textarea name="message" id="">Escreva sua mensagem aqui</textarea>
+                    <button class="bg-gradient-to-r from-primary to-secondary p-2 rounded-2xl text-white font-bold">Enviar mensagem</button>
+                </form>
+            </div>
+            <div class="md:w-[40%] flex justify-center items-center">
+                <Image src={Fale} alt='Homem - fale conosco' />
+            </div>
+        </div>
+    </div>
+</section> 

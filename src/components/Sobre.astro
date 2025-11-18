@@ -1,0 +1,41 @@
+---
+import Time from '../assets/Time.png'
+import Box from '../components/Box.astro'
+import { Image } from 'astro:assets';
+---
+
+<section class="px-[10%] mt-20 mb-20">
+    <div class="flex md:flex-row max-lg:flex-col gap-10">
+        <div class="md:w-[50%]">
+            <img class="h-[600px]" src="/images/nos.png" alt="'para empresas" />
+        </div>
+        <div class="md:w-[50%] justify-center flex flex-col max-lg:items-center">
+            <span class="text-primary text-lg max-lg:text-center">FAÇA PARTE</span>
+            <h2 class="font-bold text-4xl text-text max-lg:text-center">UM POUCO SOBRE NÓS</h2>
+            <p class="mt-3 text-black/90 max-lg:text-center">A Seitel Telecom tem mais de 30 anos de história. São três décadas surfando as ondas do avanço tecnológico sempre de mãos dadas com os nossos clientes. 
+                Atendimento humanizado é a nosso lema! Na Seitel, além de internet de máxima qualidade, com mais estabilidade e velocidade, você encontra um parceiro para a sua jornada. </p>
+            <p class="mt-2 text-black/90 max-lg:text-center">
+                Estaremos sempre ao teu lado, à total disposição para atendê-lo nos mais diversos desafios, seja na vida privada, seja na vida empresarial.
+                <br>Vamos juntos?
+                <br>Bem vindo à Seitel Telecom!
+
+            </p>
+            <button class="bg-transparent border-2 text-center hover:bg-primary transition-colors hover:text-white duration-300 border-primary w-52 mt-8 py-2 rounded-2xl text-black font-bold">ASSINE AGORA</button>
+        </div>
+    </div>
+    <div class="mt-12 max-lg:gap-8 flex md:flex-row max-lg:flex-col max-lg:justify-center justify-between max-lg:items-center">
+       <Box icone='/images/Wifi-bg.svg' titulo='NOSSA MISSÃO' subtitulo='Promover, sob todas as circunstâncias, a melhor experiência em conectividade unindo as comunidades' />
+       <Box icone='/images/visao.svg' titulo='NOSSA VISÃO' subtitulo='Ser Referência nacional no segmento de provedores de acesso à internet, destacando-se sempre pelo respeito, comprometimento e serventia máxima ao cliente'/>
+       <Box icone='/images/diamante.svg' titulo='NOSSOS VALORES' subtitulo='Foco no cliente, compromisso, integridade, inovação e respeito.' />
+    </div>
+</section>
+
+<style>
+
+@media (max-width: 768px) { /* Ajuste para telas mobile */
+  img {
+    height: 450px; /* Ajuste a altura conforme necessário */
+  }
+}
+
+</style>

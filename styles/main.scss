@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    @font-face {
+        font-family: 'Barlow';
+        src: url("/fonts/Barlow-Bold.ttf") format("truetype");
+        font-weight: bold;
+    }
+    @font-face {
+        font-family: 'Barlow';
+        src: url("/fonts/Barlow-Light.ttf") format("truetype");
+        font-weight: 200;
+    }
+    @font-face {
+        font-family: 'Barlow';
+        src: url("/fonts/Barlow-Medium.ttf") format("truetype");
+        font-weight: normal;
+    }
+    @font-face {
+        font-family: 'Poppins';
+        src: url("/fonts/Poppins-Light.ttf") format("truetype");
+        font-weight: 200;
+    }
+    @font-face {
+        font-family: 'Poppins';
+        src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+        font-weight: normal;
+    }
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow', 'open-sans';
+    background-image: url('/images/background.png');
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+}
+
+#collapseMenu li {
+    @apply text-white font-bold hover:text-primary transition-colors duration-500 max-lg:text-sm max-lg:text-center mt-5
+}
+
+.background-planos {
+    background-image: url('/images/background-planos.png');
+    background-size: cover;
+}
+
+input, select {
+    @apply bg-white w-full p-2 rounded-xl
+}
+
+input, select ::placeholder {
+    @apply text-black
+}
+
+textarea {
+    @apply bg-white w-full p-2 rounded-xl text-[#9ca3af]
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0px;
+}
+ 
+::-webkit-scrollbar-thumb{
+    background: #21aeda;
+    border-radius: 15px;
+}
+
+.glide__arrows button {
+    @apply text-blue-950 font-bold bg-blue-200 backdrop-blur-xl
+}

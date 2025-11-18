@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Seitel - Indique um amigo">
+    
+    <img class="" src="/images/indique.png" alt="" />
+
+    <h2 class="mt-10 text-black font-bold text-center text-4xl">
+        INDIQUE AQUI
+    </h2>
+
+    <div class="px-[10%] pb-12">
+        <div
+            class="bg-gradient-to-tr from-primary to-secondary rounded-xl w-full flex flex-wrap justify-center h-full py-12 mt-12"
+        >
+            <div>
+                <form class="flex flex-col justify-center" id="forms" action="">
+                    <h2 class="text-center text-white text-xl mb-6">
+                        Dados de quem vai indicar:
+                    </h2>
+
+                    <div class="flex md:flex-row gap-8 max-lg:flex-col">
+                        <input
+                            name='nome'
+                            id="nome"
+                            type="text"
+                            placeholder="Nome de quem vai indicar"
+                        />
+                        <input
+                            name="telefone"
+                            id="telefone"
+                            type="tel"
+                            placeholder="Telefone de quem vai indicar"
+                        />
+                        <input
+                            name="cpf"
+                            id="cpf"
+                            type="tel"
+                            placeholder="CPF de quem vai indicar"
+                        />
+                    </div>
+
+                    <h2 class="text-center text-white text-xl mt-12 mb-6">
+                        Dados do indicado:
+                    </h2>
+
+                    <div class="flex md:flex-row gap-8 max-lg:flex-col">
+                        <input name="nomeindicado" id="nomeindicado" type="text" placeholder="Nome Completo do indicado" />
+                        <input name="telind" id="telind" placeholder="Telefone do indicado" />
+                        <input
+                            type="text"
+                            name="endind"
+                            placeholder="Endereço do indicado"
+                        />
+                    </div>
+
+                    <button id="button" class="bg-[#28b8db] text-base px-6 py-2 rounded-xl mt-12"
+                        >Indicar agora</button
+                    >
+
+                    <p id="message" class="hidden text-green text-sm mt-8 animate-fade">Obrigado por indicar um amigo, em breve entraremos em contato com você</p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script is:inline>
+
+</script>

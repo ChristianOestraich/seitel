@@ -1,0 +1,32 @@
+---
+import Preco from '../components/Preco.astro'
+import Camera from '../components/Camera.astro'
+
+---
+
+<section class="px-[20%] py-12">
+    <div class="">
+      <h2 class="text-[#293659] font-bold text-4xl text-center">PLANOS DE SEGURANÇA</h2>
+      <h3 class="text-center text-base text-[#0280d8] mt-2">Proteja o que mais importa com nossos planos de segurança avançada, sempre conectados a você!</h3>
+    </div>
+  
+    <div class="flex flex-col md:flex-row gap-10 px-0 md:px-[10%] py-12">
+      <Preco mega='500' unidade='MB' globo='' deezer='' tv='/images/Seitel-tv.svg' watch='' telecine='' ubook='/images/skeelo1.svg' camera='/images/camera1.svg' segundo='' ou='' conversor='' valor='119,90' />
+      <Camera mega='500' unidade='MB' globo='' deezer='' tv='/images/Seitel-tv.svg' watch='' telecine='' ubook='/images/skeelo1.svg' camera='/images/camera1.svg' segundo='' ou='' conversor='' valor='139,90' />
+    </div>    
+  
+      <!-- Controles de navegação -->
+<div class="glide__arrows hidden md:block" data-glide-el="controls">
+  <button class="glide__arrow glide__arrow--left" data-glide-dir="<">←</button>
+  <button class="glide__arrow glide__arrow--right" data-glide-dir=">">→</button>
+</div>
+  
+      <!-- Indicadores (opcional) -->
+      <div class="glide__bullets" data-glide-el="controls[nav]">
+        <button class="glide__bullet" data-glide-dir="=0"></button>
+        <button class="glide__bullet" data-glide-dir="=1"></button>
+        <!-- Adicione mais bullets conforme necessário -->
+      </div>
+    </div>
+  </section>
+  
