@@ -3,28 +3,32 @@ import Fale from '../assets/Fale.png'
 import { Image } from 'astro:assets';
 ---
 
-<section class="px-[10%] py-20 bg-[#f3f7fb]">
-    <div>
-        <div class="flex md:flex-row max-lg:flex-col max-lg:gap-8 justify-center items-center">
-            <div class="md:w-[60%]">
-                <h2 class="text-primary text-lg max-lg:text-center">FALE CONOSCO</h2>
-                <h3 class="font-bold text-4xl mt-4 text-black max-lg:text-center">FALE CONOSCO</h3>
-                <form class="flex flex-col gap-5 mt-8" action="">
-                    <div class="flex md:flex-row gap-5">
-                        <input type="text" placeholder="Nome">
-                        <input type="text" placeholder="Telefone">
-                    </div>
-                    <div class="flex md:flex-row gap-5">
-                        <input type="text" placeholder="E-mail">
-                        <input type="text" placeholder="CEP">
-                    </div>
-                    <textarea name="message" id="">Escreva sua mensagem aqui</textarea>
-                    <button class="bg-gradient-to-r from-primary to-secondary p-2 rounded-2xl text-white font-bold">Enviar mensagem</button>
-                </form>
-            </div>
-            <div class="md:w-[40%] flex justify-center items-center">
-                <Image src={Fale} alt='Homem - fale conosco' />
-            </div>
-        </div>
+<section class="relative px-[10%] py-20 min-h-[600px] flex items-center justify-center">
+    <!-- Background image -->
+    <div class="absolute inset-0 z-0">
+        <Image 
+            src={Fale} 
+            alt='Background - fale conosco' 
+            class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-[#0a3447]/70"></div>
     </div>
-</section> 
+
+    <!-- Content -->
+    <div class="relative z-10 w-full max-w-3xl mx-auto">
+        <h2 class="text-white text-center font-bold text-4xl mb-12">FALE CONOSCO</h2>
+        
+        <form class="flex flex-col gap-5" action="">
+            <div class="flex md:flex-row max-md:flex-col gap-5">
+                <input type="text" placeholder="Nome" class="flex-1 p-4 rounded-lg">
+                <input type="text" placeholder="Telefone" class="flex-1 p-4 rounded-lg">
+            </div>
+            <div class="flex md:flex-row max-md:flex-col gap-5">
+                <input type="text" placeholder="E-mail" class="flex-1 p-4 rounded-lg">
+                <input type="text" placeholder="CEP" class="flex-1 p-4 rounded-lg">
+            </div>
+            <textarea name="message" id="" rows="4" placeholder="Escreva sua mensagem aqui" class="p-4 rounded-lg"></textarea>
+            <button class="bg-gradient-to-r from-primary to-secondary p-4 rounded-2xl text-white font-bold">Enviar mensagem</button>
+        </form>
+    </div>
+</section>
