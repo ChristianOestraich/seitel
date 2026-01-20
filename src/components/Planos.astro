@@ -1,6 +1,20 @@
 ---
-// Dados dos planos
-const planos = [
+// Dados dos plan
+
+type Plano = {
+  mega: string
+  unidade: string
+  valor: string
+  beneficios: string[]
+  streamings: string[]
+  textos: string[]
+  extras?: {
+    ou: string
+  }
+}
+
+
+const planos: Plano[] = [
   {
     mega: '500',
     unidade: 'MB',
