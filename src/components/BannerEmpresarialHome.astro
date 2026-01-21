@@ -1,0 +1,514 @@
+---
+// Componente de Seção Empresarial com Vídeo Background
+
+import BannerEmpresarial from "../assets/Empresarial-image.png";
+import { Image } from "astro:assets";
+---
+<section class="empresarial-hero">
+  <!-- Vídeo Background -->
+  <video class="video-background" autoplay muted loop playsinline>
+    <source src="/banners/Empresarial.mp4" type="video/mp4" />
+  </video>
+  
+  <!-- Overlay escuro para melhor legibilidade -->
+  <div class="video-overlay"></div>
+  
+  <!-- Conteúdo -->
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Conexão para empresas que precisam ir além</h1>
+        <p>
+          Soluções corporativas pensadas para empresas que precisam de conexão
+          confiável, atendimento ágil e tecnologia preparada para crescer junto
+          com o negócio.
+        </p>
+        <a href="https://wa.me/555136531254?text=Olá%20gostaria%20de%20saber%20mais%20sobre%20os%20planos%20empresariais%20da%20Seitel!" class="btn-assinar">
+          ASSINE AGORA
+        </a>
+      </div>
+      
+      <div class="hero-image">
+        <Image class="w" src={BannerEmpresarial} alt="'para empresas" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção de Benefícios -->
+<section class="beneficios-empresarial">
+  <div class="container">
+    <div class="section-header">
+      <h2>MUITO ALÉM DE VELOCIDADE E CONEXÃO</h2>
+      <p class="subtitle">Conheça mais sobre as vantagens do nosso plano empresarial.</p>
+    </div>
+    
+    <div class="beneficios-grid">
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Internet Ilimitada</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Interligação</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Cloud Server VPS</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>IP fixo</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Last Mile</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Colocation</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Suporte Premium</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Trânsito IP</span>
+      </div>
+      
+      <div class="beneficio-item">
+        <div class="check-icon">✓</div>
+        <span>Seitel Cloud</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção de Features Detalhadas -->
+<section class="features-empresarial">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 10V3L4 14H11L11 21L20 10L13 10Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h3>Alta Velocidade</h3>
+        <p>
+          Internet de fibra óptica com velocidade simétrica para upload e
+          download, garantindo a máxima performance para o seu negócio.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h3>Conexão Estável</h3>
+        <p>
+          Infraestrutura robusta com redundância, garantindo 99,9% de
+          disponibilidade para que sua empresa esteja sempre conectada.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h3>Suporte 24/7</h3>
+        <p>
+          Equipe técnica especializada disponível 24 horas por dia, 7 dias por
+          semana, para garantir o funcionamento contínuo da sua operação.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h3>Segurança</h3>
+        <p>
+          Proteção avançada contra ameaças digitais, com monitoramento constante
+          e soluções de segurança personalizadas para seu negócio.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Seção Hero com Vídeo */
+  .empresarial-hero {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #001a4d;
+  }
+
+  .video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 26, 77, 0.85) 0%,
+      rgba(0, 71, 179, 0.75) 50%,
+      rgba(0, 102, 255, 0.7) 100%
+    );
+    z-index: 2;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 80px 0;
+  }
+
+  .hero-text h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 24px;
+    line-height: 1.2;
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .hero-text p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 32px;
+    line-height: 1.7;
+    animation: fadeInUp 0.8s ease 0.2s both;
+  }
+
+  .btn-assinar {
+    display: inline-block;
+    background: #ffffff;
+    color: #0066cc;
+    padding: 16px 48px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+    animation: fadeInUp 0.8s ease 0.4s both;
+  }
+
+  .btn-assinar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.5);
+    background: #f0f0f0;
+  }
+
+  .hero-image {
+    animation: fadeInUp 0.8s ease 0.3s both;
+  }
+
+  .hero-image img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .hero-image img:hover {
+    transform: scale(1.02);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Seção de Benefícios */
+  .beneficios-empresarial {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0066cc;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: #666;
+    font-weight: 400;
+  }
+
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 3px solid #0066cc;
+    box-shadow: 0 10px 40px rgba(0, 102, 204, 0.1);
+  }
+
+  .beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .beneficio-item:hover {
+    background: #e6f0ff;
+    transform: translateX(8px);
+  }
+
+  .check-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #0066cc, #00b4d8);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .beneficio-item span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  /* Seção de Features */
+  .features-empresarial {
+    padding: 80px 0;
+    background: #ffffff;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+  }
+
+  .feature {
+    text-align: center;
+    padding: 40px 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .feature:hover {
+    border-color: #0066cc;
+    box-shadow: 0 10px 40px rgba(0, 102, 204, 0.15);
+    transform: translateY(-8px);
+  }
+
+  .feature-icon {
+    background: linear-gradient(135deg, #0066cc, #00b4d8);
+    color: #ffffff;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    transition: all 0.3s ease;
+  }
+
+  .feature:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .feature h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+  }
+
+  .feature p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+  }
+
+  /* Responsivo */
+  @media (max-width: 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+    }
+
+    .beneficios-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 32px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.8rem;
+    }
+
+    .beneficios-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 24px;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .container {
+      padding: 0 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .empresarial-hero {
+      min-height: 500px;
+    }
+
+    .hero-content {
+      padding: 60px 0;
+    }
+
+    .hero-text h1 {
+      font-size: 1.75rem;
+    }
+
+    .btn-assinar {
+      padding: 14px 32px;
+      font-size: 0.9rem;
+    }
+  }
+</style>

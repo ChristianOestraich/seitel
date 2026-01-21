@@ -10,10 +10,13 @@ import Empresarial from "../components/Empresarial.astro";
 import TV from "../components/TV.astro";
 import Sobre from "../components/Sobre.astro";
 import BannerEmpresarial from "../components/BannerEmpresarial.astro";
+import BannerEmpresarialHome from "../components/BannerEmpresarialHome.astro";
 import Fale from "../assets/Fale.png";
 import FaleConosco from "../components/Fale-conosco.astro";
 import BannerGlobo from "../components/Banner-globo.astro";
 import Streaming from "../components/Streamings.astro";
+import BannerCameras from "../components/Banner-cameras.astro";
+import TelefoniaFixaBanner from "../components/TelefoniaFixaBanner.astro"
 ---
 
 <Layout title="Seitel - Internet com a qualidade que você merece!">
@@ -29,13 +32,13 @@ import Streaming from "../components/Streamings.astro";
   
   <TV />
   
-  <BannerEmpresarial />
+  <BannerEmpresarialHome />
 
-  <img src="/images/CFTV.png" alt="" />
+  <BannerCameras />
 
   <Sobre />
 
-  <img src="/images/Telefonia2.png" alt="" />
+  <TelefoniaFixaBanner />
 
   <FaleConosco />
 </Layout>

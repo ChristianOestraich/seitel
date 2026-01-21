@@ -1,0 +1,540 @@
+---
+// MonitoringBanner.astro
+// Componente de Banner de Câmeras de Monitoramento - VERSÃO CORRIGIDA
+---
+
+<section class="monitoring-banner">
+  <div class="banner-container">
+    <!-- Background com gradiente animado -->
+    <div class="animated-bg"></div>
+    
+    <!-- Partículas de segurança -->
+    <canvas id="securityCanvas" class="security-canvas"></canvas>
+    
+    <!-- Conteúdo principal -->
+    <div class="content-wrapper">
+      <!-- Lado esquerdo - Título e Descrição COM MARGEM -->
+      <div class="text-section">
+        <div class="title-container">
+          <h1 class="main-title">
+            MONITORE<br/>
+            TUDO O QUE<br/>
+            ACONTECE<br/>
+            <span class="highlight">NA SUA CASA!</span>
+          </h1>
+        </div>
+        
+        <p class="description">
+          Tenha total controle e segurança com nossas câmeras inteligentes de última geração.
+        </p>
+
+        <!-- Nova seção de câmeras comunitárias -->
+        <div class="community-cameras-section">
+          <h3 class="community-title">CÂMERAS COMUNITÁRIAS</h3>
+          <p class="community-description">
+            Ao contratar nosso plano de internet + monitoramento, você recebe acesso exclusivo ao aplicativo. 
+            Além de monitorar sua própria casa, você também tem acesso às câmeras da comunidade para maior segurança de todos!
+          </p>
+          <div class="community-badge">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Acesso Exclusivo para Clientes</span>
+          </div>
+        </div>
+        
+        <!-- Features da câmera -->
+        <div class="camera-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5C8.13 5 5 8.13 5 12C5 15.87 8.13 19 12 19C15.87 19 19 15.87 19 12C19 8.13 15.87 5 12 5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17Z" fill="white"/>
+                <circle cx="12" cy="12" r="3" fill="white"/>
+              </svg>
+            </div>
+            <span>Full HD 1080p</span>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="white"/>
+                <path d="M12 6V12L16 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span>Gravação 24/7</span>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="white" stroke-width="2"/>
+                <path d="M12 6V12L16 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span>Visão Noturna</span>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 8L21 12L17 16M7 8L3 12L7 16M14 4L10 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span>App Inteligente</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Lado direito - Imagem -->
+      <div class="phone-section">
+        <div class="phone-container">
+          <img src="/images/Camera-Telefone.png" alt="Aplicativo de Câmeras Comunitárias" class="phone-mockup-image" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .monitoring-banner {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    overflow: hidden;
+  }
+  
+  .banner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  
+  /* Background animado com cores Seitel */
+  .animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgb(0, 151, 178) 0%, rgb(33, 234, 255) 100%);
+  }
+  
+  /* Canvas de segurança */
+  .security-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+  
+  /* Container do conteúdo */
+  .content-wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 1;
+    align-items: stretch;
+    min-height: 600px;
+  }
+  
+  /* Seção de texto - COM MARGEM/PADDING */
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 3rem 2rem 3rem 14rem;
+    justify-content: center;
+    flex: 0 0 42%;
+    max-width: 42%;
+    z-index: 2;
+  }
+  
+  .title-container {
+    position: relative;
+  }
+  
+  .main-title {
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: white;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+  }
+  
+  .main-title .highlight {
+    color: #fff;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  }
+  
+  .description {
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Seção de câmeras comunitárias */
+  .community-cameras-section {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin: 0.2rem 0;
+  }
+
+  .community-title {
+    font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+    font-weight: 800;
+    color: white;
+    margin: 0 0 0.4rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .community-description {
+    font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.45;
+    margin: 0 0 0.65rem 0;
+  }
+
+  .community-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .community-badge svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .community-badge span {
+    color: white;
+    font-weight: 700;
+    font-size: clamp(0.7rem, 0.78vw, 0.78rem);
+    white-space: nowrap;
+  }
+  
+  /* Features da câmera */
+  .camera-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 0.65rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .feature-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateX(5px);
+  }
+  
+  .feature-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  
+  .feature-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .feature-item span {
+    color: white;
+    font-weight: 600;
+    font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+  }
+  
+  /* Seção do celular */
+  .phone-section {
+    flex: 0 0 58%;
+    max-width: 58%;
+    position: relative;
+    overflow: visible;
+  }
+
+  .phone-container {
+    position: absolute;
+    top: 0;
+    left: -23%;
+    width: 140%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .phone-mockup-image {
+    height: 100%;
+    min-height: 600px;
+    width: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+  
+  /* Responsivo - Desktop grande */
+  @media (min-width: 1600px) {
+    .text-section {
+      padding: 6rem 3rem 6rem 13rem;
+    }
+  }
+
+  /* Responsivo - Desktop médio */
+  @media (max-width: 1400px) {
+    .text-section {
+      padding: 3rem 1.5rem 3rem 2.5rem;
+    }
+
+    .phone-container {
+      left: -15%;
+      width: 135%;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .text-section {
+      padding: 2.5rem 1.5rem 2.5rem 2rem;
+      flex: 0 0 45%;
+      max-width: 45%;
+    }
+
+    .phone-section {
+      flex: 0 0 55%;
+      max-width: 55%;
+    }
+
+    .phone-container {
+      left: -10%;
+      width: 130%;
+    }
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .monitoring-banner {
+      min-height: auto;
+    }
+
+    .content-wrapper {
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .text-section {
+      flex: 1 1 auto;
+      max-width: 100%;
+      padding: 3rem 2rem;
+      gap: 1.5rem;
+    }
+    
+    .camera-features {
+      grid-template-columns: 1fr;
+      max-width: 600px;
+    }
+
+    .phone-section {
+      flex: 0 0 auto;
+      max-width: 100%;
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-container {
+      position: relative;
+      justify-content: center;
+      left: 0;
+      width: 100%;
+    }
+
+    .phone-mockup-image {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-position: center center;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    .text-section {
+      padding: 2.5rem 1.5rem;
+      gap: 1.25rem;
+    }
+
+    .phone-section {
+      min-height: 400px;
+    }
+
+    .phone-mockup-image {
+      max-height: 500px;
+    }
+
+    .community-cameras-section {
+      padding: 1.25rem;
+    }
+
+    .camera-features {
+      gap: 0.75rem;
+    }
+
+    .feature-item {
+      padding: 0.65rem 0.85rem;
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-section {
+      padding: 2rem 1.25rem;
+      gap: 1rem;
+    }
+
+    .phone-section {
+      min-height: 350px;
+    }
+
+    .phone-mockup-image {
+      max-height: 400px;
+    }
+
+    .community-cameras-section {
+      padding: 1rem;
+    }
+
+    .community-badge {
+      padding: 0.4rem 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  // Animação de partículas de segurança no canvas
+  const canvas = document.getElementById('securityCanvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
+  
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  
+  class SecurityParticle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    size: number;
+    
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.size = Math.random() * 3 + 1;
+    }
+    
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      
+      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+    
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.fill();
+      
+      // Círculo externo pulsante
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+  
+  const particles: SecurityParticle[] = [];
+  const particleCount = 40;
+  
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new SecurityParticle());
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    
+    // Conectar partículas próximas formando rede de segurança
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - distance / 120)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+</script>

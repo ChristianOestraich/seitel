@@ -1,10 +1,935 @@
 ---
-    import Banner from "../components/Banner.astro";
-    import BannerMobile from '../components/Banner-mobile.astro'
+// GloboPlayPage.astro
 ---
 
+<section class="globoplay-section">
+  <!-- Hero Section com Vídeo -->
+  <div class="hero-video-container">
+    <!-- Vídeo Desktop -->
+    <video 
+      class="hero-video desktop-video" 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      poster="/images/globoplay-poster.jpg"
+    >
+      <source src="/banners/Globoplay.mp4" type="video/mp4" />
+    </video>
+    
+    <!-- Vídeo Mobile -->
+    <video 
+      class="hero-video mobile-video" 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      poster="/images/globoplay-poster-mobile.jpg"
+    >
+      <source src="/banners/Globoplay-mobile.mp4" type="video/mp4" />
+    </video>
+    
+    <!-- Overlay gradiente -->
+    <div class="video-overlay"></div>
+    
+    <!-- Conteúdo sobre o vídeo -->
+    <div class="hero-content">
+      <div class="content-wrapper">
+        <!-- Logo Globo Play -->
+        <div class="logo-container">
+          <div class="logo-glow"></div>
+          <h1 class="logo-text">
+            <span class="logo-globo">globo</span><span class="logo-play">play</span>
+          </h1>
+        </div>
+        
+        <!-- Título principal -->
+        <h2 class="hero-title">
+          ENTRETENIMENTO<br/>
+          <span class="title-highlight">SEM LIMITES</span>
+        </h2>
+        
+        <!-- Descrição -->
+        <p class="hero-description">
+          Assine a Seitel e ganhe acesso completo ao Globo Play! 
+          Séries, novelas, filmes, reality shows e muito mais em um só lugar.
+        </p>
+        
+        <!-- Features -->
+        <div class="features-list">
+          <div class="feature-badge">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Grátis para clientes</span>
+          </div>
+          <div class="feature-badge">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 10L19 14M19 14L15 18M19 14H5M5 14L9 10M5 14L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Conteúdo ilimitado</span>
+          </div>
+          <div class="feature-badge">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.75 17L9 20L10.5 18.5L12 20V17M3 13H6M3 7H6M3 10H18C19.6569 10 21 8.65685 21 7C21 5.34315 19.6569 4 18 4H3V10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Qualidade 4K</span>
+          </div>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="cta-container">
+          <a 
+            href="https://wa.me/555136531254?text=Ol%C3%A1%20gostaria%20de%20assinar%20e%20ganhar%20acesso%20ao%20Globo%20Play!" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            <span>ASSINAR AGORA</span>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          
+          <button class="btn-secondary" id="openTrailerBtn">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.752 11.168L10.197 8.354C9.849 8.154 9.5 8.354 9.5 8.754V14.246C9.5 14.646 9.849 14.846 10.197 14.646L14.752 11.832C15.083 11.632 15.083 11.368 14.752 11.168Z" fill="currentColor"/>
+              <path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z" fill="currentColor"/>
+            </svg>
+            <span>ASSISTIR TRAILER</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Modal do Trailer -->
+  <div id="trailerModal" class="trailer-modal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="closeModalBtn">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="video-wrapper">
+        <iframe 
+          id="trailerVideo"
+          width="100%" 
+          height="100%" 
+          src="" 
+          title="Globo Play Trailer" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Seção de Benefícios -->
+  <div class="benefits-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">
+          O QUE VOCÊ VAI <span class="text-gradient">ASSISTIR</span>
+        </h2>
+        <p class="section-subtitle">
+          Milhares de horas de conteúdo exclusivo disponível para você
+        </p>
+      </div>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Novelas e Séries</h3>
+          <p class="card-description">
+            Assista suas novelas favoritas quando quiser e maratone as melhores séries brasileiras
+          </p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 8L16 12L10 16V8Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Reality Shows</h3>
+          <p class="card-description">
+            BBB, The Voice, The Masked Singer e muito mais! Acompanhe ao vivo e reveja os melhores momentos
+          </p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 11V13M8 10V14M12 9V15M16 10V14M20 11V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 16V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V16" stroke="currentColor" stroke-width="2"/>
+              <path d="M4 8V6C4 4.89543 4.89543 4 6 4H18C19.1046 4 20 4.89543 20 6V8" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Filmes e Documentários</h3>
+          <p class="card-description">
+            Catálogo completo com os melhores filmes nacionais e internacionais
+          </p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Conteúdo ao Vivo</h3>
+          <p class="card-description">
+            Assista a programação da TV Globo ao vivo direto no seu dispositivo
+          </p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="13" r="2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Canais Premium</h3>
+          <p class="card-description">
+            Acesso aos melhores canais como Premiere, Combate e Globo News
+          </p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17V7M15 17V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Múltiplas Telas</h3>
+          <p class="card-description">
+            Assista em até 4 dispositivos diferentes simultaneamente
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Seção CTA Final -->
+  <div class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">
+          PRONTO PARA COMEÇAR A <span class="text-gradient">MARATONAR?</span>
+        </h2>
+        <p class="cta-description">
+          Assine a Seitel agora e ganhe acesso completo ao Globo Play sem custo adicional
+        </p>
+        <a 
+          href="https://wa.me/555136531254?text=Ol%C3%A1%20gostaria%20de%20assinar%20e%20ganhar%20acesso%20ao%20Globo%20Play!" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-final-button"
+        >
+          <span>FALAR COM ESPECIALISTA</span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Banner de vídeo -->
-	<Banner href="/banners/Globoplay.mp4" />
-    <BannerMobile banner="/banners/Globoplay-mobile.mp4" />
-	<!-- FIM Banner de vídeo -->
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .globoplay-section {
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  /* Hero Video Section */
+  .hero-video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+  
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .desktop-video {
+    display: block;
+  }
+  
+  .mobile-video {
+    display: none;
+  }
+  
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 1;
+  }
+  
+  /* Hero Content */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .content-wrapper {
+    max-width: 900px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  /* Logo */
+  .logo-container {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .logo-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(13, 110, 253, 0.4) 0%, transparent 70%);
+    filter: blur(40px);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  }
+  
+  .logo-text {
+    position: relative;
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: lowercase;
+    letter-spacing: -2px;
+    margin: 0;
+  }
+  
+  .logo-globo {
+    color: white;
+  }
+  
+  .logo-play {
+    color: #0D6EFD;
+  }
+  
+  /* Hero Title */
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  
+  .title-highlight {
+    background: linear-gradient(135deg, #0D6EFD 0%, #0a58ca 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Hero Description */
+  .hero-description {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0;
+  }
+  
+  /* Features List */
+  .features-list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .feature-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .feature-badge svg {
+    width: 20px;
+    height: 20px;
+    stroke: #0D6EFD;
+  }
+  
+  /* CTA Buttons */
+  .cta-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #0D6EFD 0%, #0a58ca 100%);
+    color: white;
+    box-shadow: 0 10px 30px rgba(13, 110, 253, 0.4);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(13, 110, 253, 0.5);
+  }
+  
+  .btn-primary svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+  }
+  
+  .btn-secondary svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Modal do Trailer */
+  .trailer-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .trailer-modal.active {
+    display: flex;
+  }
+  
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 25px 100px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+  }
+  
+  .modal-close svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .video-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  /* Scroll Indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  
+  .scroll-indicator svg {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+  
+  /* Benefits Section */
+  .benefits-section {
+    padding: 6rem 0;
+    background: white;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #0D6EFD 0%, #0a58ca 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-subtitle {
+    font-size: 1.25rem;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* Benefits Grid */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .benefit-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(135deg, #0D6EFD 0%, #0a58ca 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(13, 110, 253, 0.15);
+    border-color: #0D6EFD;
+  }
+  
+  .benefit-card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .card-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(10, 88, 202, 0.05) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .benefit-card:hover .card-icon {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.2) 0%, rgba(10, 88, 202, 0.1) 100%);
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .card-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: #0D6EFD;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 1rem 0;
+  }
+  
+  .card-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    position: relative;
+    padding: 6rem 0;
+    overflow: hidden;
+  }
+  
+  .cta-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    z-index: 0;
+  }
+  
+  .cta-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(13, 110, 253, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: white;
+    margin: 0 0 1.5rem 0;
+    text-transform: uppercase;
+  }
+  
+  .cta-description {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 2.5rem 0;
+  }
+  
+  .cta-final-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #0D6EFD 0%, #0a58ca 100%);
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 10px 40px rgba(13, 110, 253, 0.4);
+  }
+  
+  .cta-final-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(13, 110, 253, 0.5);
+  }
+  
+  .cta-final-button svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .cta-final-button:hover svg {
+    transform: translateX(5px);
+  }
+  
+  /* Responsivo */
+  @media (max-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .logo-text {
+      font-size: 3rem;
+    }
+    
+    .section-title,
+    .cta-title {
+      font-size: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .desktop-video {
+      display: none;
+    }
+    
+    .mobile-video {
+      display: block;
+    }
+    
+    .hero-video-container {
+      min-height: 500px;
+    }
+    
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .logo-text {
+      font-size: 2.5rem;
+    }
+    
+    .hero-description {
+      font-size: 1rem;
+    }
+    
+    .features-list {
+      gap: 0.75rem;
+    }
+    
+    .feature-badge {
+      font-size: 0.85rem;
+      padding: 0.6rem 1rem;
+    }
+    
+    .cta-container {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .benefits-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .benefits-section {
+      padding: 4rem 0;
+    }
+    
+    .section-title,
+    .cta-title {
+      font-size: 2rem;
+    }
+    
+    .cta-section {
+      padding: 4rem 0;
+    }
+    
+    .container {
+      padding: 0 1.5rem;
+    }
+    
+    .modal-close {
+      top: -60px;
+    }
+    
+    .modal-content {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('openTrailerBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const modal = document.getElementById('trailerModal');
+    const overlay = document.getElementById('modalOverlay');
+
+    // TIPAGEM CORRETA DO IFRAME
+    const trailerVideo = document.getElementById('trailerVideo') as HTMLIFrameElement | null;
+
+    // URL do trailer
+    const trailerUrl = '/banners/globoplay (1).mp4';
+
+    function openModal() {
+      if (!modal || !trailerVideo) return;
+
+      modal.classList.add('active');
+      trailerVideo.src = trailerUrl;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modal || !trailerVideo) return;
+
+      modal.classList.remove('active');
+      trailerVideo.src = '';
+      document.body.style.overflow = '';
+    }
+
+    openBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    overlay?.addEventListener('click', closeModal);
+
+    // Fechar com tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  });
+</script>
