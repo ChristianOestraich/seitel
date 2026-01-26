@@ -12,12 +12,15 @@ import Box from '../components/Box.astro'
       <!-- Lado esquerdo - Imagem com overlay -->
       <div class="image-container">
         <div class="image-overlay"></div>
-        <img 
-          src="/images/nos.png" 
-          alt="Equipe Seitel Telecom" 
-          class="team-image"
-          loading="lazy"
-        />
+        <!-- WRAPPER adicional para controlar a rotação -->
+        <div class="image-wrapper">
+          <img 
+            src="/images/nos.png" 
+            alt="Equipe Seitel Telecom" 
+            class="team-image"
+            loading="lazy"
+          />
+        </div>
         
         <!-- Badge flutuante -->
         <div class="floating-badge">
@@ -142,61 +145,6 @@ import Box from '../components/Box.astro'
   </div>
 </section>
 
-<script>
-  // SOLUÇÃO DEFINITIVA: Remove metadados EXIF e força orientação correta
-  function fixImageOrientation() {
-    const teamImage = document.querySelector('.team-image');
-    
-    if (!teamImage) return;
-    
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    
-    img.onload = function() {
-      try {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        
-        if (!ctx) return;
-        
-        // Define dimensões do canvas baseado na orientação ORIGINAL da imagem
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        
-        // Desenha a imagem no canvas (remove EXIF automaticamente)
-        ctx.drawImage(img, 0, 0);
-        
-        // Converte para data URL e substitui a imagem
-        const correctedImage = canvas.toDataURL('image/jpeg', 0.95);
-        teamImage.setAttribute('src', correctedImage);
-        
-        // Adiciona classe para indicar que foi corrigida
-        teamImage.classList.add('orientation-fixed');
-        
-      } catch (error) {
-        console.error('Erro ao corrigir orientação:', error);
-      }
-    };
-    
-    img.onerror = function() {
-      console.error('Erro ao carregar imagem');
-    };
-    
-    // Carrega a imagem original - usa getAttribute para evitar erro
-    const originalSrc = teamImage.getAttribute('src');
-    if (originalSrc) {
-      img.src = originalSrc;
-    }
-  }
-  
-  // Executa quando o DOM estiver pronto
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fixImageOrientation);
-  } else {
-    fixImageOrientation();
-  }
-</script>
-
 <style>
   .about-section {
     position: relative;
@@ -252,32 +200,49 @@ import Box from '../components/Box.astro'
     margin-bottom: 5rem;
   }
   
-  /* Container da imagem - CORRIGIDO DEFINITIVAMENTE */
+  /* Container da imagem - SOLUÇÃO CSS PURA */
   .image-container {
     position: relative;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     background: #f0f0f0;
+    height: 600px;
+  }
+  
+  /* WRAPPER que controla a rotação */
+  .image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    /* Força o navegador a renderizar corretamente */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
   
   .team-image {
     width: 100%;
-    height: 600px;
+    height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
-    /* CRITICAL: Força a imagem a ignorar metadados EXIF */
-    image-orientation: from-image;
-  }
-  
-  /* Quando a imagem for corrigida via JavaScript, aplica orientação normal */
-  .team-image.orientation-fixed {
+    
+    /* SOLUÇÃO PRINCIPAL: Ignora metadados EXIF */
     image-orientation: none;
+    -webkit-image-orientation: none;
+    
+    /* Se a imagem estiver rotacionada, força a rotação correta */
+    /* Ajuste este valor se necessário: 0deg, -90deg, 90deg, ou 180deg */
+    transform: rotate(0deg);
+    
+    /* Garante que a imagem preencha o container */
+    object-position: center;
   }
   
+  /* Hover effect no wrapper ao invés da imagem diretamente */
   .image-container:hover .team-image {
-    transform: scale(1.05);
+    transform: rotate(0deg) scale(1.05);
   }
   
   .image-overlay {
@@ -666,6 +631,12 @@ import Box from '../components/Box.astro'
       width: 100%;
       object-fit: cover;
       max-height: 450px;
+      /* Mantém a rotação correta no mobile */
+      transform: rotate(0deg);
+    }
+    
+    .image-container:hover .team-image {
+      transform: rotate(0deg) scale(1.05);
     }
     
     .floating-badge {
@@ -680,6 +651,17 @@ import Box from '../components/Box.astro'
     
     .main-content {
       margin-bottom: 3rem;
+    }
+  }
+  
+  /* Fix específico para Safari/iOS */
+  @supports (-webkit-touch-callout: none) {
+    .team-image {
+      -webkit-transform: rotate(0deg);
+    }
+    
+    .image-container:hover .team-image {
+      -webkit-transform: rotate(0deg) scale(1.05);
     }
   }
 </style>
