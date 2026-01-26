@@ -142,6 +142,38 @@ import Box from '../components/Box.astro'
   </div>
 </section>
 
+<script is:inline>
+  // Fix para imagem rotacionada no iOS
+  document.addEventListener('DOMContentLoaded', function() {
+    var teamImage = document.querySelector('.team-image');
+    
+    if (teamImage && /iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      // Força recarga da imagem sem metadados EXIF
+      var src = teamImage.src;
+      var img = new Image();
+      
+      img.onload = function() {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        
+        if (!ctx) return;
+        
+        // Define dimensões do canvas
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        
+        // Desenha imagem no canvas (isso remove metadados EXIF)
+        ctx.drawImage(img, 0, 0);
+        
+        // Substitui a imagem pela versão do canvas
+        teamImage.src = canvas.toDataURL('image/jpeg', 0.95);
+      };
+      
+      img.src = src;
+    }
+  });
+</script>
+
 <style>
   .about-section {
     position: relative;
@@ -208,6 +240,8 @@ import Box from '../components/Box.astro'
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    /* Adiciona contexto de empilhamento */
+    isolation: isolate;
   }
   
   .team-image {
@@ -215,19 +249,20 @@ import Box from '../components/Box.astro'
     height: 600px;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
-    /* CORREÇÃO PRINCIPAL: Remove qualquer transformação que possa inverter a imagem */
-    image-orientation: from-image;
+    /* CORREÇÃO PRINCIPAL: Ignora metadados EXIF */
+    image-orientation: none;
     /* Força orientação correta no iOS */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     /* Remove qualquer rotação automática */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering: auto;
+    -webkit-image-rendering: auto;
+    /* Previne transformações inesperadas */
+    will-change: transform;
   }
   
   .image-container:hover .team-image {
-    transform: scale(1.05);
+    transform: scale(1.05) translateZ(0);
   }
   
   .image-overlay {
@@ -606,8 +641,18 @@ import Box from '../components/Box.astro'
       font-size: 2rem;
     }
     
-    .team-image {
+    /* FIX CRÍTICO: Ajusta container da imagem no mobile */
+    .image-container {
       height: 450px;
+      width: 100%;
+    }
+    
+    .team-image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      /* Force orientação portrait no mobile */
+      max-height: 450px;
     }
     
     .floating-badge {
@@ -625,17 +670,25 @@ import Box from '../components/Box.astro'
     }
   }
   
-  /* Fix específico para iOS Safari */
+  /* Fix específico para iOS Safari - VERSÃO APRIMORADA */
   @supports (-webkit-touch-callout: none) {
+    .image-container {
+      /* Previne problemas de orientação */
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+    }
+    
     .team-image {
       /* Força a imagem a não rotacionar automaticamente no iOS */
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg) translateZ(0);
+      transform: rotate(0deg) translateZ(0);
+      /* Ignora metadados EXIF completamente */
+      image-orientation: none !important;
     }
     
     .image-container:hover .team-image {
-      -webkit-transform: scale(1.05) rotate(0deg);
-      transform: scale(1.05) rotate(0deg);
+      -webkit-transform: scale(1.05) rotate(0deg) translateZ(0);
+      transform: scale(1.05) rotate(0deg) translateZ(0);
     }
   }
 </style>
