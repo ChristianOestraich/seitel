@@ -3,70 +3,383 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Seitel - Indique um amigo">
-    
-    <img class="" src="/images/indique.png" alt="" />
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary via-[#1fb5d8] to-secondary py-20 md:py-32">
+        <!-- Decorative elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-10 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        </div>
 
-    <h2 class="mt-10 text-black font-bold text-center text-4xl">
-        INDIQUE AQUI
-    </h2>
-
-    <div class="px-[10%] pb-12">
-        <div
-            class="bg-gradient-to-tr from-primary to-secondary rounded-xl w-full flex flex-wrap justify-center h-full py-12 mt-12"
-        >
-            <div>
-                <form class="flex flex-col justify-center" id="forms" action="">
-                    <h2 class="text-center text-white text-xl mb-6">
-                        Dados de quem vai indicar:
-                    </h2>
-
-                    <div class="flex md:flex-row gap-8 max-lg:flex-col">
-                        <input
-                            name='nome'
-                            id="nome"
-                            type="text"
-                            placeholder="Nome de quem vai indicar"
-                        />
-                        <input
-                            name="telefone"
-                            id="telefone"
-                            type="tel"
-                            placeholder="Telefone de quem vai indicar"
-                        />
-                        <input
-                            name="cpf"
-                            id="cpf"
-                            type="tel"
-                            placeholder="CPF de quem vai indicar"
-                        />
+        <div class="container mx-auto px-6 md:px-[10%] relative z-10">
+            <div class="text-center mb-12">
+                <div class="inline-block mb-6">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 text-white font-semibold">
+                        🎁 Ganhe Benefícios
                     </div>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+                    Indique e Ganhe!
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
+                    Compartilhe a melhor internet com seus amigos e receba recompensas incríveis
+                </p>
+            </div>
 
-                    <h2 class="text-center text-white text-xl mt-12 mb-6">
-                        Dados do indicado:
-                    </h2>
-
-                    <div class="flex md:flex-row gap-8 max-lg:flex-col">
-                        <input name="nomeindicado" id="nomeindicado" type="text" placeholder="Nome Completo do indicado" />
-                        <input name="telind" id="telind" placeholder="Telefone do indicado" />
-                        <input
-                            type="text"
-                            name="endind"
-                            placeholder="Endereço do indicado"
-                        />
+            <!-- Benefits Cards -->
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
+                    <h3 class="text-white font-bold text-lg mb-2">Ganhe Descontos</h3>
+                    <p class="text-white/80 text-sm">Desconto na sua mensalidade a cada indicação</p>
+                </div>
 
-                    <button id="button" class="bg-[#28b8db] text-base px-6 py-2 rounded-xl mt-12"
-                        >Indicar agora</button
-                    >
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">Ajude Amigos</h3>
+                    <p class="text-white/80 text-sm">Seus amigos também ganham benefícios</p>
+                </div>
 
-                    <p id="message" class="hidden text-green text-sm mt-8 animate-fade">Obrigado por indicar um amigo, em breve entraremos em contato com você</p>
-
-                </form>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">Processo Rápido</h3>
+                    <p class="text-white/80 text-sm">Indicação simples e retorno garantido</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6 md:px-[10%]">
+            <div class="max-w-4xl mx-auto">
+                <!-- Form Card -->
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                    <!-- Form Header -->
+                    <div class="bg-gradient-to-r from-primary to-secondary p-8 md:p-10 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
+                            Faça sua Indicação
+                        </h2>
+                        <p class="text-white/90 text-lg">
+                            Preencha os dados abaixo e comece a ganhar
+                        </p>
+                    </div>
+
+                    <!-- Form Content -->
+                    <div class="p-8 md:p-12">
+                        <form class="space-y-10" id="forms">
+                            <!-- Dados do Indicador -->
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Seus Dados</h3>
+                                </div>
+
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="relative">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                                            Nome Completo
+                                        </label>
+                                        <input
+                                            name="nome"
+                                            id="nome"
+                                            type="text"
+                                            placeholder="Digite seu nome"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="relative">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                                            Telefone
+                                        </label>
+                                        <input
+                                            name="telefone"
+                                            id="telefone"
+                                            type="tel"
+                                            placeholder="(00) 00000-0000"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="relative">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                                            CPF
+                                        </label>
+                                        <input
+                                            name="cpf"
+                                            id="cpf"
+                                            type="text"
+                                            placeholder="000.000.000-00"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Separador -->
+                            <div class="relative">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t-2 border-gray-200"></div>
+                                </div>
+                                <div class="relative flex justify-center">
+                                    <span class="bg-white px-4 text-sm text-gray-500 font-medium">
+                                        Dados do seu amigo
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Dados do Indicado -->
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Dados do Indicado</h3>
+                                </div>
+
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="relative">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                                            Nome Completo
+                                        </label>
+                                        <input
+                                            name="nomeindicado"
+                                            id="nomeindicado"
+                                            type="text"
+                                            placeholder="Nome do indicado"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-secondary focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="relative">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                                            Telefone
+                                        </label>
+                                        <input
+                                            name="telind"
+                                            id="telind"
+                                            type="tel"
+                                            placeholder="(00) 00000-0000"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-secondary focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="relative">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                                            Endereço
+                                        </label>
+                                        <input
+                                            name="endind"
+                                            id="endind"
+                                            type="text"
+                                            placeholder="Endereço completo"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-secondary focus:outline-none transition-colors"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-6">
+                                <button
+                                    id="button"
+                                    type="submit"
+                                    class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-lg py-4 px-8 rounded-xl hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 group"
+                                >
+                                    <span>Enviar Indicação</span>
+                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Success Message -->
+                            <div id="message" class="hidden">
+                                <div class="bg-green-50 border-2 border-green-200 rounded-xl p-6 flex items-start gap-4 animate-fade-in">
+                                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-green-800 text-lg mb-1">Indicação enviada com sucesso!</h4>
+                                        <p class="text-green-700">Obrigado por indicar um amigo! Em breve entraremos em contato com você e seu amigo para confirmar os benefícios.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="grid md:grid-cols-2 gap-6 mt-12">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border-2 border-gray-100">
+                        <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Como Funciona
+                        </h4>
+                        <ol class="space-y-2 text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-primary">1.</span>
+                                <span>Preencha o formulário com seus dados e os dados do seu amigo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-primary">2.</span>
+                                <span>Nossa equipe entrará em contato para confirmar</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-primary">3.</span>
+                                <span>Após a contratação, você recebe seus benefícios!</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-6 shadow-lg border-2 border-primary/20">
+                        <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Dúvidas?
+                        </h4>
+                        <p class="text-gray-600 mb-4">
+                            Entre em contato conosco pelo WhatsApp para mais informações sobre o programa de indicações.
+                        </p>
+                        <a
+                            href="https://wa.me/555136531254?text=Olá! Gostaria de saber mais sobre o programa de indicações"
+                            target="_blank"
+                            class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+                        >
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            Falar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </Layout>
 
-<script is:inline>
+<style>
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
+    .animate-fade-in {
+        animation: fade-in 0.5s ease-out;
+    }
+
+    /* Adicionar foco visual melhorado */
+    input:focus {
+        box-shadow: 0 0 0 3px rgba(31, 201, 224, 0.1);
+    }
+</style>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('forms');
+        const button = document.getElementById('button');
+        const message = document.getElementById('message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Desabilitar botão para evitar múltiplos envios
+            button.disabled = true;
+            button.innerHTML = `
+                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Enviando...</span>
+            `;
+
+            // Simular envio (aqui você pode adicionar sua lógica de envio real)
+            setTimeout(() => {
+                // Mostrar mensagem de sucesso
+                message.classList.remove('hidden');
+                
+                // Limpar formulário
+                form.reset();
+
+                // Restaurar botão
+                button.disabled = false;
+                button.innerHTML = `
+                    <span>Enviar Indicação</span>
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                `;
+
+                // Scroll suave até a mensagem
+                message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Esconder mensagem após 10 segundos
+                setTimeout(() => {
+                    message.classList.add('hidden');
+                }, 10000);
+            }, 1500);
+        });
+
+        // Máscaras de entrada
+        const telefoneInputs = document.querySelectorAll('input[type="tel"]');
+        telefoneInputs.forEach(input => {
+            input.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length <= 11) {
+                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                    value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+                }
+                e.target.value = value;
+            });
+        });
+
+        const cpfInput = document.getElementById('cpf');
+        if (cpfInput) {
+            cpfInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length <= 11) {
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                }
+                e.target.value = value;
+            });
+        }
+    });
 </script>

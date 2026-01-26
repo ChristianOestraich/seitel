@@ -1,29 +1,35 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Banner from '../components/Banner-home.astro';
-import { Image } from 'astro:assets';
-import Bannerapp from '../assets/Banner-app.png'
-import Seguranca from '../components/Seguranca.astro'
-import Internet from '../components/Internet.astro'
-import Empresarial from '../components/Empresarial.astro';
-import TV from '../components/TV.astro'
-import Sobre from '../components/Sobre.astro'
-import BannerEmpresarial from '../components/BannerEmpresarial.astro'
-import Fale from '../assets/Fale.png'
-import FaleConosco from '../components/Fale-conosco.astro';
-import BannerGlobo from '../components/Banner-globo.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Banner from "../components/Banner-home.astro";
+import { Image } from "astro:assets";
+import Bannerapp from "../assets/Banner-app.png";
+import Seguranca from "../components/Seguranca.astro";
+import Internet from "../components/Internet.astro";
+import Empresarial from "../components/Empresarial.astro";
+import TV from "../components/TV.astro";
+import Sobre from "../components/Sobre.astro";
+import BannerCameras from "../components/Banner-cameras.astro";
+import Fale from "../assets/Fale.png";
+import FaleConosco from "../components/Fale-conosco.astro";
 ---
 
 <Layout title="Seitel - Internet com a qualidade que você merece!">
+<section class="w-full p-0 m-0">
+  <video 
+    src="/banners/cameras-site.mp4" 
+    class="w-full block"
+    autoplay 
+    loop 
+    muted
+    playsinline
+  >
+    Seu navegador não suporta vídeos HTML5.
+  </video>
+</section>
+  <BannerCameras />
 
-    <img src="/images/CFTV.png" alt="" class="mt-10">
+  <Seguranca />
 
-    <Seguranca />
-
-    <FaleConosco />
-
+  <FaleConosco />
 </Layout>
-
-
-
