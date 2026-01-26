@@ -12,7 +12,12 @@ import Box from '../components/Box.astro'
       <!-- Lado esquerdo - Imagem com overlay -->
       <div class="image-container">
         <div class="image-overlay"></div>
-        <img src="/images/nos.png" alt="Equipe Seitel Telecom" class="team-image" />
+        <img 
+          src="/images/nos.png" 
+          alt="Equipe Seitel Telecom" 
+          class="team-image"
+          loading="lazy"
+        />
         
         <!-- Badge flutuante -->
         <div class="floating-badge">
@@ -192,12 +197,17 @@ import Box from '../components/Box.astro'
     margin-bottom: 5rem;
   }
   
-  /* Container da imagem */
+  /* Container da imagem - CORRIGIDO PARA iPHONE */
   .image-container {
     position: relative;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    /* Força o webkit a renderizar corretamente */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   .team-image {
@@ -206,6 +216,14 @@ import Box from '../components/Box.astro'
     object-fit: cover;
     display: block;
     transition: transform 0.5s ease;
+    /* CORREÇÃO PRINCIPAL: Remove qualquer transformação que possa inverter a imagem */
+    image-orientation: from-image;
+    /* Força orientação correta no iOS */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Remove qualquer rotação automática */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
   
   .image-container:hover .team-image {
@@ -233,6 +251,7 @@ import Box from '../components/Box.astro'
     gap: 1rem;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 1.25rem 1.75rem;
     border-radius: 16px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
@@ -603,6 +622,20 @@ import Box from '../components/Box.astro'
     
     .main-content {
       margin-bottom: 3rem;
+    }
+  }
+  
+  /* Fix específico para iOS Safari */
+  @supports (-webkit-touch-callout: none) {
+    .team-image {
+      /* Força a imagem a não rotacionar automaticamente no iOS */
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    
+    .image-container:hover .team-image {
+      -webkit-transform: scale(1.05) rotate(0deg);
+      transform: scale(1.05) rotate(0deg);
     }
   }
 </style>
