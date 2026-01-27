@@ -86,6 +86,16 @@ import { Image } from "astro:assets";
           <div class="company-logo">
             <img src="/images/CHARRUA.png" alt="Charrua" loading="lazy" />
           </div>
+          
+          <!-- Rodoquímica -->
+          <div class="company-logo">
+            <img src="/images/Rodoquimica.png" alt="Rodoquímica" loading="lazy" />
+          </div>
+          
+          <!-- Via-2 -->
+          <div class="company-logo">
+            <img src="/images/Via-2.png" alt="Via-2" loading="lazy" />
+          </div>
         </div>
       </div>
     </div>
@@ -357,7 +367,7 @@ import { Image } from "astro:assets";
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
   }
 
-  /* Carrossel de Logos */
+  /* Carrossel de Logos - CORRIGIDO */
   .companies-carousel {
     position: relative;
     overflow: hidden;
@@ -386,20 +396,21 @@ import { Image } from "astro:assets";
     width: fit-content;
   }
 
+  /* Animação de scroll infinito */
   .companies-track.animated {
-    animation: scroll 40s linear infinite;
+    animation: infiniteScroll 35s linear infinite;
   }
 
   .companies-track:hover {
     animation-play-state: paused;
   }
 
-  @keyframes scroll {
+  @keyframes infiniteScroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-100% - 40px));
+      transform: translateX(-50%);
     }
   }
 
@@ -531,27 +542,31 @@ import { Image } from "astro:assets";
 </style>
 
 <script>
-  // Script para duplicação automática dos logos e animação suave
+  // Script CORRIGIDO para loop infinito perfeito
   document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('companiesTrack');
     
     if (!track) return;
     
     // Pegar todos os logos originais
-    const logos = Array.from(track.children);
+    const originalLogos = Array.from(track.children);
     
-    // Duplicar os logos para criar efeito de loop infinito
-    logos.forEach(logo => {
-      const clone = logo.cloneNode(true);
-      track.appendChild(clone);
-    });
+    // Criar pelo menos 3 cópias para garantir loop suave em todas as telas
+    const copiesToCreate = 3;
+    
+    for (let i = 0; i < copiesToCreate; i++) {
+      originalLogos.forEach(logo => {
+        const clone = logo.cloneNode(true);
+        track.appendChild(clone);
+      });
+    }
     
     // Adicionar classe de animação após duplicação
     track.classList.add('animated');
     
-    // Calcular velocidade baseada no número de logos
-    const logoCount = logos.length;
-    const animationDuration = Math.max(30, logoCount * 3); // Mínimo 30s, 3s por logo
+    // Calcular velocidade baseada no número de logos originais
+    const logoCount = originalLogos.length;
+    const animationDuration = Math.max(35, logoCount * 3); // Mínimo 35s
     track.style.animationDuration = `${animationDuration}s`;
     
     // Pausar animação quando tab não está visível (otimização de performance)
@@ -567,17 +582,15 @@ import { Image } from "astro:assets";
     const images = track.querySelectorAll('img');
     images.forEach(img => {
       img.addEventListener('error', function() {
-        // Esconder o card se a imagem não carregar
         const parentLogo = this.closest('.company-logo') as HTMLElement | null;
         if (parentLogo) {
           parentLogo.style.display = 'none';
-          console.warn(`Falha ao carregar imagem: ${this.src}`);
+          console.warn(`Falha ao carregar imagem: ${(this as HTMLImageElement).src}`);
         }
       });
       
-      // Adicionar evento de carregamento bem-sucedido
+      // Fade in suave quando a imagem carregar
       img.addEventListener('load', function() {
-        // Fade in suave quando a imagem carregar
         const imgElement = this as HTMLImageElement;
         imgElement.style.opacity = '0';
         setTimeout(() => {
