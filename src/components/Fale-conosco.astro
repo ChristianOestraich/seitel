@@ -3,25 +3,28 @@ import Fale from '../assets/Fale.png'
 import { Image } from 'astro:assets';
 ---
 
-<section class="relative px-[5%] py-20 min-h-[800px] flex items-center justify-center overflow-hidden">
-    <!-- Background image -->
-    <div class="absolute inset-0 z-0">
-        <Image 
-            src={Fale} 
-            alt='Background - fale conosco' 
-            class="w-full h-full object-cover"
-        />
-        <div class="absolute inset-0 bg-[#0a3447]/70"></div>
+<section class="fale-section-modern">
+    <!-- Background decorativo moderno -->
+    <div class="bg-decorative">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
     </div>
-
-    <!-- Decorative elements -->
-    <div class="absolute inset-0 z-[1] pointer-events-none">
-        <div class="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 right-20 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+    
+    <!-- Imagem de fundo decorativa -->
+    <div class="bg-image-overlay">
+      <Image 
+        src={Fale} 
+        alt='Background decorativo' 
+        class="background-image"
+      />
     </div>
+    
+    <!-- Padrão de grid sutil -->
+    <div class="grid-pattern"></div>
 
     <!-- Content Container -->
-    <div class="relative z-10 w-full max-w-7xl mx-auto">
+    <div class="fale-content">
         <h2 class="text-white text-center font-bold text-4xl md:text-5xl mb-4">FALE CONOSCO</h2>
         <p class="text-white/80 text-center text-lg mb-12 max-w-2xl mx-auto">
             Entre em contato conosco ou encontre a unidade mais próxima de você
@@ -133,7 +136,7 @@ import { Image } from 'astro:assets';
                                 </svg>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-[#0a3447] text-lg mb-2">Seitel Taquari - Matriz </h4>
+                                <h4 class="font-bold text-[#0a3447] text-lg mb-2">Seitel Taquari - Matriz</h4>
                                 <div class="space-y-1.5 text-gray-600">
                                     <p class="flex items-start gap-2">
                                         <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -161,7 +164,7 @@ import { Image } from 'astro:assets';
                                     </div>
                                 </div>
                                 <a 
-                                    href="https://www.google.com/maps/search/?api=1&query=-29.7219,-51.8237" 
+                                    href="https://www.google.com/maps/search/?api=1&query=Seitel+Telecom+Taquari+RS" 
                                     target="_blank"
                                     class="inline-flex items-center gap-2 mt-3 text-sm text-primary hover:text-secondary font-medium transition-colors"
                                 >
@@ -211,7 +214,7 @@ import { Image } from 'astro:assets';
                                     </div>
                                 </div>
                                 <a 
-                                    href="https://www.google.com/maps/search/?api=1&query=-29.8006,-51.8638" 
+                                    href="https://www.google.com/maps/search/?api=1&query=Rua+Sete+de+Setembro+2130+Centro+Taquari+RS" 
                                     target="_blank"
                                     class="inline-flex items-center gap-2 mt-3 text-sm text-secondary hover:text-primary font-medium transition-colors"
                                 >
@@ -261,7 +264,7 @@ import { Image } from 'astro:assets';
                                     </div>
                                 </div>
                                 <a 
-                                    href="https://www.google.com/maps/search/?api=1&query=-29.9296,-51.7192" 
+                                    href="https://www.google.com/maps/search/?api=1&query=Avenida+Luiz+Barreto+101+Centro+Triunfo+RS" 
                                     target="_blank"
                                     class="inline-flex items-center gap-2 mt-3 text-sm text-primary hover:text-secondary font-medium transition-colors"
                                 >
@@ -281,22 +284,138 @@ import { Image } from 'astro:assets';
 </section>
 
 <style>
-    /* Location card animations */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  /* ==================== SEÇÃO PRINCIPAL ==================== */
+  .fale-section-modern {
+    position: relative;
+    width: 100%;
+    min-height: 900px;
+    background: linear-gradient(135deg, #0a1628 0%, #132f52 50%, #0d2847 100%);
+    overflow: hidden;
+    padding: 80px 0;
+  }
+  
+  /* ==================== BACKGROUND DECORATIVO ==================== */
+  .bg-decorative {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  /* ==================== IMAGEM DE FUNDO DECORATIVA ==================== */
+  .bg-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.15;
+    mix-blend-mode: soft-light;
+    filter: brightness(1.2) contrast(0.9);
+  }
+  
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    animation: float-orb 20s ease-in-out infinite;
+  }
+  
+  .orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #00bcd4 0%, transparent 70%);
+    top: -200px;
+    left: -100px;
+  }
+  
+  .orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #1fc9e0 0%, transparent 70%);
+    bottom: -150px;
+    right: -100px;
+    animation-delay: 5s;
+  }
+  
+  .orb-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #00a8c5 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 10s;
+  }
+  
+  @keyframes float-orb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-30px, 30px) scale(0.9); }
+  }
+  
+  /* Grid pattern */
+  .grid-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* ==================== CONTEÚDO ==================== */
+  .fale-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  
+  /* ==================== RESPONSIVIDADE ==================== */
+  @media (max-width: 1024px) {
+    .fale-section-modern {
+      padding: 60px 0;
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 1024px) {
-        .lg\:sticky {
-            position: static !important;
-        }
+    
+    .fale-content {
+      padding: 0 30px;
     }
+  }
+  
+  @media (max-width: 768px) {
+    .fale-section-modern {
+      padding: 50px 0;
+    }
+    
+    .fale-content {
+      padding: 0 25px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .fale-content {
+      padding: 0 20px;
+    }
+  }
 </style>
