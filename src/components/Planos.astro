@@ -145,7 +145,7 @@ const planos: Plano[] = [
         <ul class="glide__slides">
           {planos.map((plano, index) => (
             <li class="glide__slide">
-              <div class="flip-card h-[580px]">
+              <div class="flip-card h-[580px]" data-card-index={index}>
                 <div class="flip-card-inner">
                   <!-- FRENTE DO CARD -->
                   <div class="flip-card-front">
@@ -189,7 +189,7 @@ const planos: Plano[] = [
                         <div class="flex gap-3 justify-center items-center flex-wrap max-w-[280px] my-4">
                           {plano.streamings.map((streaming) => (
                             <div class="streaming-icon-container w-14 h-14 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300 overflow-hidden">
-                              <img src={streaming} alt="Benefício" class="w-full h-full object-cover rounded-xl" />
+                              <img src={streaming} alt="Benefício" class="w-full h-full object-cover rounded-xl" loading="lazy" />
                             </div>
                           ))}
                         </div>
@@ -236,7 +236,9 @@ const planos: Plano[] = [
                       )}
 
                       <!-- Botão com gradiente -->
-                      <button class={`w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-xl transform hover:scale-105 uppercase text-sm ${plano.tipo === 'camera' ? 'bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white hover:shadow-orange-500/50' : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white hover:shadow-cyan-500/50'}`}>
+                      <button 
+                        type="button"
+                        class={`flip-button w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-xl transform hover:scale-105 uppercase text-sm ${plano.tipo === 'camera' ? 'bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white hover:shadow-orange-500/50' : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white hover:shadow-cyan-500/50'}`}>
                         <span class="flex items-center justify-center gap-2">
                           {plano.tipo === 'camera' ? (
                             <>
@@ -416,12 +418,12 @@ const planos: Plano[] = [
 
       <!-- Controles de navegação modernos -->
       <div class="glide__arrows" data-glide-el="controls">
-        <button class="glide__arrow glide__arrow--left bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center hover:from-cyan-600 hover:to-blue-700 transition-all shadow-xl hover:shadow-cyan-500/50 transform hover:scale-110" data-glide-dir="<">
+        <button type="button" class="glide__arrow glide__arrow--left bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center hover:from-cyan-600 hover:to-blue-700 transition-all shadow-xl hover:shadow-cyan-500/50 transform hover:scale-110" data-glide-dir="<">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
           </svg>
         </button>
-        <button class="glide__arrow glide__arrow--right bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center hover:from-cyan-600 hover:to-blue-700 transition-all shadow-xl hover:shadow-cyan-500/50 transform hover:scale-110" data-glide-dir=">">
+        <button type="button" class="glide__arrow glide__arrow--right bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center hover:from-cyan-600 hover:to-blue-700 transition-all shadow-xl hover:shadow-cyan-500/50 transform hover:scale-110" data-glide-dir=">">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
           </svg>
@@ -431,7 +433,7 @@ const planos: Plano[] = [
       <!-- Indicadores modernos -->
       <div class="glide__bullets flex justify-center gap-2 mt-8" data-glide-el="controls[nav]">
         {planos.map((_, index) => (
-          <button class="glide__bullet w-3 h-3 rounded-full bg-gray-600 hover:bg-cyan-400 transition-all duration-300" data-glide-dir={`=${index}`}></button>
+          <button type="button" class="glide__bullet w-3 h-3 rounded-full bg-gray-600 hover:bg-cyan-400 transition-all duration-300" data-glide-dir={`=${index}`}></button>
         ))}
       </div>
     </div>
@@ -472,10 +474,15 @@ const planos: Plano[] = [
 </section>
 
 <style>
-  /* Flip Card Styles */
+  /* ===========================================
+     CORREÇÕES ESPECÍFICAS PARA SAFARI/OPERA
+     =========================================== */
+  
+  /* Flip Card Styles - Com correções para Safari */
   .flip-card {
     perspective: 1000px;
     cursor: pointer;
+    -webkit-perspective: 1000px;
   }
 
   .flip-card-inner {
@@ -484,11 +491,14 @@ const planos: Plano[] = [
     height: 100%;
     transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
   }
 
   .flip-card:hover .flip-card-inner,
   .flip-card.flipped .flip-card-inner {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 
   .flip-card-front,
@@ -498,10 +508,12 @@ const planos: Plano[] = [
     height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
   }
 
   .flip-card-back {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 
   /* Custom Scrollbar para o verso do card */
@@ -529,6 +541,7 @@ const planos: Plano[] = [
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
     z-index: 10;
   }
 
@@ -543,6 +556,7 @@ const planos: Plano[] = [
   .glide__bullet--active {
     background: linear-gradient(to right, #06b6d4, #3b82f6) !important;
     transform: scale(1.5);
+    -webkit-transform: scale(1.5);
     width: 24px;
     border-radius: 10px;
   }
@@ -556,7 +570,7 @@ const planos: Plano[] = [
     }
   }
 
-  /* Animações suaves */
+  /* Animações suaves - com prefixos para Safari */
   @keyframes float {
     0%, 100% {
       transform: translateY(0px);
@@ -566,8 +580,18 @@ const planos: Plano[] = [
     }
   }
 
+  @-webkit-keyframes float {
+    0%, 100% {
+      -webkit-transform: translateY(0px);
+    }
+    50% {
+      -webkit-transform: translateY(-10px);
+    }
+  }
+
   .flip-card:hover .streaming-icon-container {
     animation: float 2s ease-in-out infinite;
+    -webkit-animation: float 2s ease-in-out infinite;
   }
 
   /* Garantir qualidade das imagens */
@@ -575,20 +599,78 @@ const planos: Plano[] = [
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
+
+  /* Garantir que gradientes funcionem no Safari/Opera */
+  .bg-gradient-to-r,
+  .bg-gradient-to-br,
+  .bg-gradient-to-b {
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+
+  .text-transparent {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Garantir que backdrop-filter funcione */
+  .backdrop-blur-sm,
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
 </style>
 
 <script>
   // Funcionalidade de clique para dispositivos móveis e desktop
+  // Com correções para Safari/Opera
   document.addEventListener('DOMContentLoaded', () => {
     const flipCards = document.querySelectorAll('.flip-card');
     
     flipCards.forEach(card => {
+      const flipButton = card.querySelector('.flip-button');
+      
+      // Prevenir que o hover funcione em dispositivos touch
+      if ('ontouchstart' in window) {
+        card.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          card.classList.toggle('flipped');
+        });
+      }
+      
+      // Click para desktop
+      if (flipButton) {
+        flipButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const parentCard = (e.target as HTMLElement).closest('.flip-card');
+          if (parentCard) {
+            parentCard.classList.toggle('flipped');
+          }
+        });
+      }
+      
+      // Fallback para navegadores que não suportam bem o hover
       card.addEventListener('click', (e) => {
-        // Previne o clique se for nos botões ou links
         const target = e.target as HTMLElement;
-        if (target && (target.closest('button') || target.closest('a'))) {
+        
+        // Ignora cliques em links e botões de ação
+        if (target && target.closest('a[href]') && !target.closest('.flip-button')) {
           return;
         }
+        
+        // Ignora cliques no botão de flip (já tratado acima)
+        if (target && target.closest('.flip-button')) {
+          return;
+        }
+        
         card.classList.toggle('flipped');
       });
     });
