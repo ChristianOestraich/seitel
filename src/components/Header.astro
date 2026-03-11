@@ -2,7 +2,8 @@
     <!-- FIM DO HEADER-TOP -->
     <div class="px-[6%] py-6 justify-between flex flex-row items-center bg-gradient-to-b from-black/50 to-transparent absolute w-full top-0 z-50">
         <div>
-            <a href="/"><img class="h-16 -ml-4 hover:-translate-y-1 transition-[0.6s]" src="/images/Logo.svg" alt=""></a>
+            <!-- CORRIGIDO: transition-[0.6s] → transition-all duration-[600ms] -->
+            <a href="/"><img class="h-16 -ml-4 hover:-translate-y-1 transition-all duration-[600ms]" src="/images/Logo.svg" alt=""></a>
         </div>
         <div class="flex justify-center items-center -mt-4">
             <menu>
@@ -16,11 +17,9 @@
                                 <li><a href="/planos-de-internet" class="block text-center px-4 text-primary hover:bg-gray-200">Residencial</a></li>
                                 <li><a href="/planos-empresariais" class="block px-4 mb-4 text-center text-primary hover:bg-gray-200">Empresarial</a></li>
                                 <li><a href="/cameras" class="block px-4 mb-4 text-center text-primary hover:bg-gray-200">Câmeras</a></li>
-                                
                             </ul>
                         </li>
                         <a href="/sobre-nos"><li>SOBRE NÓS</li></a>
-                        
                         <a href="/indique-um-amigo"><li>EU CONHEÇO, EU INDICO</li></a>
                         <a href="/fale-conosco"><li>FALE CONOSCO</li></a>
                     </ul>
@@ -31,7 +30,10 @@
             <button class="bg-gradient-to-b hover:-translate-y-1 transition-all duration-300 max-lg:hidden from-primary flex justify-center items-center to-secondary w-52 rounded-3xl font-bold text-white py-2" onclick="window.location.href='https://api.whatsapp.com/send/?phone=555136531254&text=Ol%C3%A1%21+Vim+do+site&type=phone_number&app_absent=0';">
                 ASSINE JÁ
             </button>
-            <a href="https://wa.me/555136531254?text=Ol%C3%A1%20gostaria%20de%20saber%20mais%20sobre%20os%20planos%20e%20benef%C3%ADcios%20da%20Seitel!" target="_blank"><img class="fixed h-16 left-[80%] md:left-[95%] z-50 top-[85%] animate-bounce cursor-pointer" src="/images/whatsBtn.png" alt=""></a>
+            <!-- CORRIGIDO: left-[80%] → left-auto right-4 no mobile para evitar sobreposição no Safari iOS -->
+            <a href="https://wa.me/555136531254?text=Ol%C3%A1%20gostaria%20de%20saber%20mais%20sobre%20os%20planos%20e%20benef%C3%ADcios%20da%20Seitel!" target="_blank">
+                <img class="fixed h-16 right-4 md:right-6 z-50 top-[85%] animate-bounce cursor-pointer" src="/images/whatsBtn.png" alt="">
+            </a>
         </div>
     </div>
 </header>

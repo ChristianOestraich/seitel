@@ -477,28 +477,32 @@ const planos: Plano[] = [
   /* ===========================================
      CORREÇÕES ESPECÍFICAS PARA SAFARI/OPERA
      =========================================== */
-  
-  /* Flip Card Styles - Com correções para Safari */
+
+  /* Flip Card Styles */
   .flip-card {
     perspective: 1000px;
-    cursor: pointer;
     -webkit-perspective: 1000px;
+    cursor: pointer;
   }
 
   .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    /* CORRIGIDO: adicionado translateZ(0) para forçar GPU no Safari */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    will-change: transform;
   }
 
   .flip-card:hover .flip-card-inner,
   .flip-card.flipped .flip-card-inner {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(0);
+    -webkit-transform: rotateY(180deg) translateZ(0);
   }
 
   .flip-card-front,
@@ -509,11 +513,15 @@ const planos: Plano[] = [
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
+    /* CORRIGIDO: translateZ(0) força cada face na sua própria camada de GPU */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    isolation: isolate;
   }
 
   .flip-card-back {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(0);
+    -webkit-transform: rotateY(180deg) translateZ(0);
   }
 
   /* Custom Scrollbar para o verso do card */
@@ -570,23 +578,15 @@ const planos: Plano[] = [
     }
   }
 
-  /* Animações suaves - com prefixos para Safari */
+  /* Animações suaves */
   @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
   }
 
   @-webkit-keyframes float {
-    0%, 100% {
-      -webkit-transform: translateY(0px);
-    }
-    50% {
-      -webkit-transform: translateY(-10px);
-    }
+    0%, 100% { -webkit-transform: translateY(0px); }
+    50% { -webkit-transform: translateY(-10px); }
   }
 
   .flip-card:hover .streaming-icon-container {
@@ -600,36 +600,41 @@ const planos: Plano[] = [
     image-rendering: crisp-edges;
   }
 
-  /* Garantir que gradientes funcionem no Safari/Opera */
-  .bg-gradient-to-r,
-  .bg-gradient-to-br,
-  .bg-gradient-to-b {
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
+  /* CORRIGIDO: removido o bloco anterior que sobrescrevia bg-clip-text com padding-box
+     Esse era o principal causador dos gradientes de texto quebrados no Safari/Opera.
+     As classes abaixo agora ficam separadas e corretas. */
 
   .text-transparent {
-    -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .bg-clip-text {
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
   }
 
-  /* Garantir que backdrop-filter funcione */
-  .backdrop-blur-sm,
+  /* CORRIGIDO: backdrop-blur separado por classe com valores corretos */
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+
   .backdrop-blur-md {
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
+  }
+
+  /* Fallback para browsers sem suporte a backdrop-filter (Opera antigo) */
+  @supports not (backdrop-filter: blur(1px)) {
+    .backdrop-blur-sm,
+    .backdrop-blur-md {
+      background-color: rgba(17, 24, 39, 0.85);
+    }
   }
 </style>
 
 <script>
   // Funcionalidade de clique para dispositivos móveis e desktop
-  // Com correções para Safari/Opera
   document.addEventListener('DOMContentLoaded', () => {
     const flipCards = document.querySelectorAll('.flip-card');
     
