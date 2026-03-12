@@ -40,11 +40,16 @@ import { Image } from 'astro:assets';
                     <p class="text-gray-600">Preencha o formulário e retornaremos em breve</p>
                 </div>
                 
-                <form class="flex flex-col gap-5" action="">
+                <form class="flex flex-col gap-5" id="contactForm">
+                    <!-- Web3Forms Access Key -->
+                    <input type="hidden" name="access_key" value="0ab5c8a9-da8e-4515-9f7e-f1e9853d3b30" />
+                    <input type="hidden" name="subject" value="Nova Mensagem - Seitel Fale Conosco" />
+
                     <div class="grid md:grid-cols-2 gap-4">
                         <div class="relative">
                             <input 
-                                type="text" 
+                                type="text"
+                                name="nome"
                                 placeholder="Nome completo" 
                                 class="w-full p-4 pl-12 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors"
                                 required
@@ -56,7 +61,9 @@ import { Image } from 'astro:assets';
                         
                         <div class="relative">
                             <input 
-                                type="tel" 
+                                type="tel"
+                                name="telefone"
+                                id="phone"
                                 placeholder="Telefone" 
                                 class="w-full p-4 pl-12 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors"
                                 required
@@ -70,7 +77,8 @@ import { Image } from 'astro:assets';
                     <div class="grid md:grid-cols-2 gap-4">
                         <div class="relative">
                             <input 
-                                type="email" 
+                                type="email"
+                                name="email"
                                 placeholder="E-mail" 
                                 class="w-full p-4 pl-12 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors"
                                 required
@@ -82,7 +90,9 @@ import { Image } from 'astro:assets';
                         
                         <div class="relative">
                             <input 
-                                type="text" 
+                                type="text"
+                                name="cep"
+                                id="cep"
                                 placeholder="CEP" 
                                 class="w-full p-4 pl-12 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors"
                             />
@@ -107,14 +117,35 @@ import { Image } from 'astro:assets';
                     </div>
                     
                     <button 
+                        id="submitBtn"
                         type="submit"
-                        class="bg-gradient-to-r from-primary to-secondary p-4 rounded-xl text-white font-bold text-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
+                        class="submit-button bg-gradient-to-r from-primary to-secondary p-4 rounded-xl text-white font-bold text-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
                     >
-                        <span>Enviar mensagem</span>
-                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="button-text">Enviar mensagem</span>
+                        <span class="button-loading" style="display:none;">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Enviando...
+                        </span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform button-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </button>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden bg-green-50 border-2 border-green-200 rounded-xl p-5 flex items-start gap-4">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-green-800 text-lg mb-1">Mensagem enviada com sucesso!</h4>
+                            <p class="text-green-700 text-sm">Obrigado pelo contato! Retornaremos em breve.</p>
+                        </div>
+                    </div>
                 </form>
             </div>
 
@@ -284,7 +315,6 @@ import { Image } from 'astro:assets';
 </section>
 
 <style>
-  /* ==================== SEÇÃO PRINCIPAL ==================== */
   .fale-section-modern {
     position: relative;
     width: 100%;
@@ -294,7 +324,6 @@ import { Image } from 'astro:assets';
     padding: 80px 0;
   }
   
-  /* ==================== BACKGROUND DECORATIVO ==================== */
   .bg-decorative {
     position: absolute;
     top: 0;
@@ -305,7 +334,6 @@ import { Image } from 'astro:assets';
     overflow: hidden;
   }
   
-  /* ==================== IMAGEM DE FUNDO DECORATIVA ==================== */
   .bg-image-overlay {
     position: absolute;
     top: 0;
@@ -368,7 +396,6 @@ import { Image } from 'astro:assets';
     66% { transform: translate(-30px, 30px) scale(0.9); }
   }
   
-  /* Grid pattern */
   .grid-pattern {
     position: absolute;
     top: 0;
@@ -383,7 +410,6 @@ import { Image } from 'astro:assets';
     z-index: 2;
   }
   
-  /* ==================== CONTEÚDO ==================== */
   .fale-content {
     position: relative;
     z-index: 10;
@@ -392,30 +418,92 @@ import { Image } from 'astro:assets';
     padding: 0 40px;
   }
   
-  /* ==================== RESPONSIVIDADE ==================== */
   @media (max-width: 1024px) {
-    .fale-section-modern {
-      padding: 60px 0;
-    }
-    
-    .fale-content {
-      padding: 0 30px;
-    }
+    .fale-section-modern { padding: 60px 0; }
+    .fale-content { padding: 0 30px; }
   }
   
   @media (max-width: 768px) {
-    .fale-section-modern {
-      padding: 50px 0;
-    }
-    
-    .fale-content {
-      padding: 0 25px;
-    }
+    .fale-section-modern { padding: 50px 0; }
+    .fale-content { padding: 0 25px; }
   }
   
   @media (max-width: 480px) {
-    .fale-content {
-      padding: 0 20px;
-    }
+    .fale-content { padding: 0 20px; }
   }
 </style>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const buttonText = submitBtn.querySelectorAll('.button-text');
+        const buttonLoading = submitBtn.querySelector('.button-loading');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            buttonText.forEach(el => el.style.display = 'none');
+            buttonLoading.style.display = 'inline-flex';
+            submitBtn.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                const object = Object.fromEntries(formData);
+                const json = JSON.stringify(object);
+
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    successMessage.classList.remove('hidden');
+                    form.reset();
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => successMessage.classList.add('hidden'), 10000);
+                } else {
+                    alert('Erro ao enviar. Tente novamente.');
+                }
+            } catch (err) {
+                alert('Erro de conexão. Tente novamente.');
+            } finally {
+                buttonText.forEach(el => el.style.display = 'inline');
+                buttonLoading.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Máscara telefone
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length <= 11) {
+                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                    value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+                }
+                e.target.value = value;
+            });
+        }
+
+        // Máscara CEP
+        const cepInput = document.getElementById('cep');
+        if (cepInput) {
+            cepInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length <= 8) {
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                }
+                e.target.value = value;
+            });
+        }
+    });
+</script>
