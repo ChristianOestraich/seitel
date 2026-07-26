@@ -1,6 +1,92 @@
 ---
 import Fale from '../assets/Fale.png'
 import { Image } from 'astro:assets';
+
+// Type para as locações
+interface Locacao {
+    id: number;
+    nome: string;
+    endereco: string;
+    rua: string;
+    numero: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
+    cep: string;
+    telefone: string;
+    whatsapp: string;
+    googleMapsUrl: string;
+    gradientFrom: string;
+    gradientTo: string;
+}
+
+// Const com as locações
+const locacoes: Locacao[] = [
+    {
+        id: 1,
+        nome: 'Seitel Taquari - Matriz',
+        endereco: 'Rod. Aleixo Rocha da Silva, 871',
+        rua: 'Rod. Aleixo Rocha da Silva',
+        numero: '871',
+        bairro: 'Léo Alvim Faller',
+        cidade: 'Taquari',
+        estado: 'RS',
+        cep: '95860-000',
+        telefone: '0800 653 1254',
+        whatsapp: '(51) 3653-1254',
+        googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Seitel+Telecom+Taquari+RS',
+        gradientFrom: 'from-primary',
+        gradientTo: 'to-secondary'
+    },
+    {
+        id: 2,
+        nome: 'Seitel Taquari - Centro',
+        endereco: 'Rua Sete de Setembro, 2130',
+        rua: 'Rua Sete de Setembro',
+        numero: '2130',
+        bairro: 'Centro',
+        cidade: 'Taquari',
+        estado: 'RS',
+        cep: '95860-000',
+        telefone: '0800 653 1254',
+        whatsapp: '(51) 3653-1254',
+        googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Rua+Sete+de+Setembro+2130+Centro+Taquari+RS',
+        gradientFrom: 'from-secondary',
+        gradientTo: 'to-primary'
+    },
+    {
+        id: 3,
+        nome: 'Seitel Triunfo',
+        endereco: 'Avenida Luiz Barreto, 101',
+        rua: 'Avenida Luiz Barreto',
+        numero: '101',
+        bairro: 'Centro',
+        cidade: 'Triunfo',
+        estado: 'RS',
+        cep: '95840-000',
+        telefone: '0800 653 1254',
+        whatsapp: '(51) 3653-1254',
+        googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Avenida+Luiz+Barreto+101+Centro+Triunfo+RS',
+        gradientFrom: 'from-primary',
+        gradientTo: 'to-secondary'
+    },
+    {
+        id: 4,
+        nome: 'Seitel São Jerônimo',
+        endereco: 'R. Gen. Bento Gonçalves, 140',
+        rua: 'R. Gen. Bento Gonçalves',
+        numero: '140 sala 2',
+        bairro: 'Centro',
+        cidade: 'São Jerônimo',
+        estado: 'RS',
+        cep: '93600-000',
+        telefone: '0800 653 1254',
+        whatsapp: '(51) 3653-1254',
+        googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=R+Gen+Bento+Goncalves+140+Centro+Sao+Jeronimo+RS',
+        gradientFrom: 'from-purple-500',
+        gradientTo: 'to-pink-600'
+    }
+];
 ---
 
 <section class="fale-section-modern">
@@ -151,165 +237,82 @@ import { Image } from 'astro:assets';
 
             <!-- Locations Column -->
             <div class="bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white/20">
-                <div class="mb-6">
-                    <h3 class="text-2xl font-bold text-[#0a3447] mb-2">Nossas unidades</h3>
-                    <p class="text-gray-600">Encontre a unidade Seitel mais próxima de você</p>
+                <div class="mb-6 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#0a3447] mb-2">Nossas unidades</h3>
+                        <p class="text-gray-600">Encontre a unidade Seitel mais próxima de você</p>
+                    </div>
                 </div>
 
-                <!-- Location Cards -->
-                <div class="space-y-4">
-                    <!-- Location 1 - Rod. Aleixo Rocha da Silva -->
-                    <div class="group p-5 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-[#0a3447] text-lg mb-2">Seitel Taquari - Matriz</h4>
-                                <div class="space-y-1.5 text-gray-600">
-                                    <p class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span class="text-sm">Rod. Aleixo Rocha da Silva, 871<br>Léo Alvim Faller, Taquari - RS<br>CEP: 95860-000</span>
-                                    </p>
-                                    <div class="space-y-2 pt-2">
-                                        <p class="flex items-center gap-2">
-                                            <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                            </svg>
-                                            <span class="text-sm font-semibold text-gray-700">0800 653 1254</span>
-                                        </p>
-                                        <a 
-                                            href="https://wa.me/555136531254" 
-                                            target="_blank"
-                                            class="flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700 transition-colors"
-                                        >
-                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                                            </svg>
-                                            <span>(51) 3653-1254</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <a 
-                                    href="https://www.google.com/maps/search/?api=1&query=Seitel+Telecom+Taquari+RS" 
-                                    target="_blank"
-                                    class="inline-flex items-center gap-2 mt-3 text-sm text-primary hover:text-secondary font-medium transition-colors"
-                                >
-                                    <span>Ver no Google Maps</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <!-- Location Cards Container com Scroll Vertical Limpos -->
+                <div class="locations-scroll-container max-h-[520px] overflow-y-auto pr-2 flex flex-col gap-4">
+                    {locacoes.map((locacao) => (
+                        <div class="group w-full p-5 bg-slate-50/80 rounded-2xl border-2 border-sky-100 hover:border-sky-300 hover:shadow-md transition-all duration-300">
+                            <div class="flex items-start gap-4">
+                                <!-- Ícone do Mapa -->
+                                <div class="w-12 h-12 bg-sky-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                     </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                                </div>
 
-                    <!-- Location 2 - Centro de Taquari -->
-                    <div class="group p-5 bg-gradient-to-br from-secondary/5 via-secondary/3 to-transparent rounded-2xl border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-[#0a3447] text-lg mb-2">Seitel Taquari - Centro</h4>
-                                <div class="space-y-1.5 text-gray-600">
-                                    <p class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 mt-0.5 text-secondary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span class="text-sm">Rua Sete de Setembro, 2130<br>Centro, Taquari - RS<br>CEP: 95860-000</span>
-                                    </p>
-                                    <div class="space-y-2 pt-2">
-                                        <p class="flex items-center gap-2">
-                                            <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                <!-- Conteúdo do Card -->
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-[#0a3447] text-lg mb-2">{locacao.nome}</h4>
+                                    
+                                    <div class="space-y-2 text-gray-600">
+                                        <!-- Endereço -->
+                                        <p class="flex items-start gap-2">
+                                            <svg class="w-4 h-4 mt-1 text-sky-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                             </svg>
-                                            <span class="text-sm font-semibold text-gray-700">0800 653 1254</span>
+                                            <span class="text-sm">
+                                                {locacao.endereco}<br>
+                                                {locacao.bairro}, {locacao.cidade} - {locacao.estado}<br>
+                                                CEP: {locacao.cep}
+                                            </span>
                                         </p>
-                                        <a 
-                                            href="https://wa.me/555136531254" 
-                                            target="_blank"
-                                            class="flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700 transition-colors"
-                                        >
-                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                                            </svg>
-                                            <span>(51) 3653-1254</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <a 
-                                    href="https://www.google.com/maps/search/?api=1&query=Rua+Sete+de+Setembro+2130+Centro+Taquari+RS" 
-                                    target="_blank"
-                                    class="inline-flex items-center gap-2 mt-3 text-sm text-secondary hover:text-primary font-medium transition-colors"
-                                >
-                                    <span>Ver no Google Maps</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Location 3 - Triunfo -->
-                    <div class="group p-5 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent rounded-2xl border-2 border-primary/20 hover:border-primary/40 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-[#0a3447] text-lg mb-2">Seitel Triunfo</h4>
-                                <div class="space-y-1.5 text-gray-600">
-                                    <p class="flex items-start gap-2">
-                                        <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span class="text-sm">Avenida Luiz Barreto, 101<br>Centro, Triunfo - RS<br>CEP: 95840-000</span>
-                                    </p>
-                                    <div class="space-y-2 pt-2">
+                                        <!-- Telefone Fixo -->
                                         <p class="flex items-center gap-2">
-                                            <svg class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                             </svg>
-                                            <span class="text-sm font-semibold text-gray-700">0800 653 1254</span>
+                                            <span class="text-sm font-semibold text-gray-800">{locacao.telefone}</span>
                                         </p>
+
+                                        <!-- WhatsApp -->
                                         <a 
-                                            href="https://wa.me/555136531254" 
+                                            href={`https://wa.me/55${locacao.whatsapp.replace(/\D/g, '')}`}
                                             target="_blank"
-                                            class="flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700 transition-colors"
+                                            rel="noopener noreferrer"
+                                            class="flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
                                         >
-                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                                             </svg>
-                                            <span>(51) 3653-1254</span>
+                                            <span>{locacao.whatsapp}</span>
                                         </a>
                                     </div>
+
+                                    <!-- Link Google Maps -->
+                                    <a 
+                                        href={locacao.googleMapsUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-1.5 mt-3 text-sm text-sky-600 hover:text-sky-700 font-medium transition-colors"
+                                    >
+                                        <span>Ver no Google Maps</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </a>
                                 </div>
-                                <a 
-                                    href="https://www.google.com/maps/search/?api=1&query=Avenida+Luiz+Barreto+101+Centro+Triunfo+RS" 
-                                    target="_blank"
-                                    class="inline-flex items-center gap-2 mt-3 text-sm text-primary hover:text-secondary font-medium transition-colors"
-                                >
-                                    <span>Ver no Google Maps</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg>
-                                </a>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -430,6 +433,44 @@ import { Image } from 'astro:assets';
   
   @media (max-width: 480px) {
     .fale-content { padding: 0 20px; }
+  }
+
+    /* Scroll Vertical Customizado */
+    .locations-scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: #0ea5e9 #f1f5f9;
+    }
+
+    .locations-scroll-container::-webkit-scrollbar {
+    width: 6px;
+    }
+
+    .locations-scroll-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+    }
+
+    .locations-scroll-container::-webkit-scrollbar-thumb {
+    background: #0ea5e9;
+    border-radius: 10px;
+    }
+
+    .locations-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #0284c7;
+    }
+
+  /* Firefox */
+  .locations-scroll-container {
+    scrollbar-color: #1fc9e0 rgba(31, 201, 224, 0.1);
+    scrollbar-width: thin;
+  }
+
+  /* Indicador de scroll (mobile) */
+  @media (max-width: 768px) {
+    .locations-scroll-container {
+      -webkit-mask-image: linear-gradient(to right, black 85%, transparent);
+      mask-image: linear-gradient(to right, black 85%, transparent);
+    }
   }
 </style>
 
