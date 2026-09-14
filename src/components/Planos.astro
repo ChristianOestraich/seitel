@@ -33,7 +33,7 @@ const planos: Plano[] = [
     unidade: 'MB',
     valor: '99,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png'],
+    streamings: ['/images/strem-3.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-1.png'
   },
@@ -43,7 +43,7 @@ const planos: Plano[] = [
     unidade: 'MB',
     valor: '109,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png'],
+    streamings: ['/images/strem-3.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-2.png'
   },
@@ -53,7 +53,7 @@ const planos: Plano[] = [
     unidade: 'MB',
     valor: '129,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Prime Video', 'Sky', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png', '/images/PrimeVideo-1.png', '/images/Sky-1.png'],
+    streamings: ['/images/strem-4.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-3.png'
   },
@@ -63,7 +63,7 @@ const planos: Plano[] = [
     unidade: 'MB',
     valor: '149,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Deezer', 'Prime Video', 'Sky', 'HBO Max', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png', '/images/Deezer-1.png', '/images/PrimeVideo-1.png', '/images/Sky-1.png', '/images/HBOMax-1.png'],
+    streamings: ['/images/strem-1.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-4.png'
   },
@@ -73,7 +73,7 @@ const planos: Plano[] = [
     unidade: 'MB',
     valor: '149,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Deezer', 'Sky', 'Disney+', 'Prime Video', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png', '/images/Deezer-1.png', '/images/Sky-1.png', '/images/DisneyPlus-1.png','/images/PrimeVideo-1.png'],
+    streamings: ['/images/strem-2.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-4.png'
   },
@@ -83,7 +83,7 @@ const planos: Plano[] = [
     unidade: 'MB',
     valor: '149,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Deezer', 'Globoplay', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png', '/images/Deezer-1.png', '/images/Globoplay-1.png'],
+    streamings: ['/images/strem-5.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-4.png'
   },
@@ -93,7 +93,7 @@ const planos: Plano[] = [
     unidade: 'GB',
     valor: '199,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Prime Video', 'Sky', 'HBO Max', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png',  '/images/PrimeVideo-1.png', '/images/Sky-1.png', '/images/HBOMax-1.png'],
+    streamings: ['/images/strem-1.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-4.png'
   },
@@ -103,7 +103,7 @@ const planos: Plano[] = [
     unidade: 'GB',
     valor: '199,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Prime Video', 'Sky', 'Disney+', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png', '/images/PrimeVideo-1.png', '/images/Sky-1.png', '/images/DisneyPlus-1.png'],
+    streamings: ['/images/strem-2.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-4.png'
   },
@@ -113,7 +113,7 @@ const planos: Plano[] = [
     unidade: 'GB',
     valor: '199,90',
     beneficios: ['Skeelo', 'Seitel TV','Globoplay', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/Skeelo-1.png', '/images/SeitelTV-1.png', '/images/Globoplay-1.png'],
+    streamings: ['/images/strem-7.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-4.png'
   },
@@ -188,8 +188,8 @@ const planos: Plano[] = [
                       {plano.tipo === 'internet' && plano.streamings && (
                         <div class="flex gap-3 justify-center items-center flex-wrap max-w-[280px] my-4">
                           {plano.streamings.map((streaming) => (
-                            <div class="streaming-icon-container w-14 h-14 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300 overflow-hidden">
-                              <img src={streaming} alt="Benefício" class="w-full h-full object-cover rounded-xl" loading="lazy" />
+                            <div class="streaming-icon-container w-60 h-24 bg-transparent backdrop-blur-none rounded-xl flex items-center justify-center hover:scale-110 transition-all duration-300 overflow-hidden">
+                              <img src={streaming} alt="Benefício" class="w-full h-full object-contain rounded-xl" loading="lazy" />
                             </div>
                           ))}
                         </div>
