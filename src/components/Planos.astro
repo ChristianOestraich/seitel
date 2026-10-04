@@ -188,8 +188,8 @@ const planos: Plano[] = [
                       {plano.tipo === 'internet' && plano.streamings && (
                         <div class="flex gap-3 justify-center items-center flex-wrap max-w-[280px] my-4">
                           {plano.streamings.map((streaming) => (
-                            <div class="streaming-icon-container w-60 h-24 bg-transparent backdrop-blur-none rounded-xl flex items-center justify-center hover:scale-110 transition-all duration-300 overflow-hidden">
-                              <img src={streaming} alt="Benefício" class="w-full h-full object-contain rounded-xl" loading="lazy" />
+                            <div class="streaming-icon-container w-full h-32 bg-transparent rounded-xl flex items-center justify-center overflow-hidden">
+                              <img src={streaming} alt="Benefício" class="w-full h-full object-contain rounded-xl" loading="lazy" decoding="async" />
                             </div>
                           ))}
                         </div>
@@ -496,13 +496,14 @@ const planos: Plano[] = [
     -webkit-transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
-    will-change: transform;
+    will-change: auto;
   }
 
   .flip-card:hover .flip-card-inner,
   .flip-card.flipped .flip-card-inner {
     transform: rotateY(180deg) translateZ(0);
     -webkit-transform: rotateY(180deg) translateZ(0);
+    will-change: transform;
   }
 
   .flip-card-front,
@@ -524,6 +525,14 @@ const planos: Plano[] = [
     -webkit-transform: rotateY(180deg) translateZ(0);
   }
 
+  /* Montagens de uma linha só (500MB e 600MB): reduz para igualar o tamanho das logos dos outros planos */
+  .streaming-icon-container img[src$="strem-3.png"] {
+    width: 75%;
+  }
+    .streaming-icon-container img[src$="strem-3.png"],
+    .streaming-icon-container img[src$="strem-5.png"] {
+      width: 75%;
+    }
   /* Custom Scrollbar para o verso do card */
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
@@ -595,10 +604,9 @@ const planos: Plano[] = [
   }
 
   /* Garantir qualidade das imagens */
-  .flip-card img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
+.flip-card img {
+  image-rendering: auto;
+}
 
   /* CORRIGIDO: removido o bloco anterior que sobrescrevia bg-clip-text com padding-box
      Esse era o principal causador dos gradientes de texto quebrados no Safari/Opera.
