@@ -16,12 +16,26 @@ import BannerGlobo from '../components/Banner-globo.astro';
 
     <Internet />
 
-    <TV /> 
-    
+    <TV />
+
     <BannerGlobo />
 
     <FaleConosco />
 
 </Layout>
 
+<script>
+  // Quando a página é aberta com #planos (ou via link do menu),
+  // rola direto para a seção de planos, ignorando o banner.
+  const irParaPlanos = () => {
+    const alvo = document.getElementById('planos');
+    if (!alvo) return;
 
+    // Pula o banner: rola até o topo da seção de planos
+    alvo.scrollIntoView({ behavior: 'auto', block: 'start' });
+  };
+
+  if (window.location.pathname.includes('planos-de-internet') || window.location.hash === '#planos') {
+    window.addEventListener('load', irParaPlanos);
+  }
+</script>

@@ -14,6 +14,7 @@ type Plano = {
     ou: string
   }
   imagemVerso?: string
+  condicaoEspecial?: boolean
 }
 
 
@@ -29,13 +30,24 @@ const planos: Plano[] = [
   // Planos de Internet
   {
     tipo: 'internet',
+    mega: '250',
+    unidade: 'MB',
+    valor: '89,90',
+    beneficios: ['Skeelo', 'Seitel TV', 'Wi-Fi 6', 'Instalação Grátis'],
+    streamings: ['/images/strem-3.png'],
+    textos: ['Wi-Fi 6', 'Instalação Grátis'],
+    imagemVerso: '/images/planoVerso-1.png'
+  },
+  {
+    tipo: 'internet',
     mega: '500',
     unidade: 'MB',
     valor: '99,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Wi-Fi 6', 'Instalação Grátis'],
     streamings: ['/images/strem-3.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
-    imagemVerso: '/images/planoVerso-1.png'
+    imagemVerso: '/images/planoVerso-1.png',
+    condicaoEspecial: true
   },
   {
     tipo: 'internet',
@@ -45,7 +57,8 @@ const planos: Plano[] = [
     beneficios: ['Skeelo', 'Seitel TV', 'Wi-Fi 6', 'Instalação Grátis'],
     streamings: ['/images/strem-3.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
-    imagemVerso: '/images/planoVerso-2.png'
+    imagemVerso: '/images/planoVerso-2.png',
+    condicaoEspecial: true
   },
   {
     tipo: 'internet',
@@ -83,7 +96,7 @@ const planos: Plano[] = [
     unidade: 'MB',
     valor: '149,90',
     beneficios: ['Skeelo', 'Seitel TV', 'Deezer', 'Globoplay', 'Wi-Fi 6', 'Instalação Grátis'],
-    streamings: ['/images/strem-5.png'],
+    streamings: ['/images/strem-8.png'],
     textos: ['Wi-Fi 6', 'Instalação Grátis'],
     imagemVerso: '/images/planoVerso-4.png'
   },
@@ -121,7 +134,7 @@ const planos: Plano[] = [
 ---
 
 <!-- Seção de Planos de Internet e Câmeras -->
-<section class="w-full bg-gradient-to-br from-gray-900 via-black to-gray-900 py-16 md:py-24 relative overflow-hidden">
+<section id="planos" class="w-full bg-gradient-to-br from-gray-900 via-black to-gray-900 py-16 md:py-24 relative overflow-hidden">
   <!-- Efeito de brilho de fundo -->
   <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 blur-3xl"></div>
   
@@ -186,12 +199,32 @@ const planos: Plano[] = [
 
                       {/* Ícones dos streamings (apenas para internet) */}
                       {plano.tipo === 'internet' && plano.streamings && (
-                        <div class="flex gap-3 justify-center items-center flex-wrap max-w-[280px] my-4">
-                          {plano.streamings.map((streaming) => (
-                            <div class="streaming-icon-container w-full h-32 bg-transparent rounded-xl flex items-center justify-center overflow-hidden">
-                              <img src={streaming} alt="Benefício" class="w-full h-full object-contain rounded-xl" loading="lazy" decoding="async" />
-                            </div>
-                          ))}
+                        <div class={`flex flex-col items-center w-full ${plano.condicaoEspecial ? 'my-2 gap-2' : 'my-4 gap-3'}`}>
+                          <div class="flex gap-3 justify-center items-center flex-wrap max-w-[280px]">
+                            {plano.streamings.map((streaming) => (
+                              <div class={`streaming-icon-container w-full ${plano.condicaoEspecial ? 'h-20' : 'h-32'} bg-transparent rounded-xl flex items-center justify-center overflow-hidden`}>
+                                <img src={streaming} alt="Benefício" class="w-full h-full object-contain rounded-xl" loading="lazy" decoding="async" />
+                              </div>
+                            ))}
+                          </div>
+
+                          {plano.condicaoEspecial && (
+                            <>
+                              <p class="text-[10px] md:text-xs font-bold text-cyan-300 uppercase tracking-wider text-center leading-tight">
+                                ⚡ Condições exclusivas para o seu endereço
+                              </p>
+                              <a
+                                href={`https://wa.me/555136531254?text=${encodeURIComponent(`Olá! Quero saber as condições exclusivas do plano ${plano.mega}${plano.unidade} para o meu endereço.`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="cta-condicoes relative block w-full text-center overflow-hidden bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white font-extrabold py-2.5 px-4 rounded-xl shadow-lg shadow-cyan-500/40 hover:shadow-cyan-400/70 transition-all duration-300 hover:scale-105 uppercase text-xs tracking-wide"
+                              >
+                                <span class="relative z-10 flex items-center justify-center gap-2">
+                                  Consultar condições diferentes
+                                </span>
+                              </a>
+                            </>
+                          )}
                         </div>
                       )}
 
@@ -207,7 +240,7 @@ const planos: Plano[] = [
                       )}
 
                       <!-- Lista de benefícios em texto -->
-                      <div class="space-y-3 w-full">
+                      <div class={`w-full ${plano.condicaoEspecial ? 'space-y-2' : 'space-y-3'}`}>
                         {plano.textos.map((texto) => (
                           <div class="flex items-center gap-3 text-sm text-gray-200 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-3 hover:bg-white/10 transition-all duration-300">
                             <div class={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${plano.tipo === 'camera' ? 'bg-gradient-to-br from-orange-500 to-red-600' : 'bg-gradient-to-br from-cyan-500 to-blue-600'}`}>
