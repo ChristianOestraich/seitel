@@ -17,6 +17,11 @@ type Plano = {
   condicaoEspecial?: boolean
 }
 
+// Imagem única com as logos SKY + e Amazon Prime empilhadas
+// Arquivo: public/images/sky-amazon-empilhado.png
+const condicaoImagem = '/images/sky-amazon-empilhado.png';
+const condicaoNomes = 'SKY + Light  •  Prime Vídeo';
+
 const planos: Plano[] = [
   // Planos de Câmeras
   {
@@ -165,7 +170,7 @@ const planos: Plano[] = [
                     <!-- Borda gradiente externa -->
                     <div class={`absolute -inset-1 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500 ${plano.tipo === 'camera' ? 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-600' : 'bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600'}`}></div>
 
-                    <div class={`relative backdrop-blur-sm rounded-2xl shadow-2xl p-8 h-full flex flex-col items-center justify-between transition-all duration-300 ${plano.tipo === 'camera' ? 'bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-orange-500/30 hover:border-orange-400/60' : 'bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-cyan-500/30 hover:border-cyan-400/60'}`}>
+                    <div class={`relative backdrop-blur-sm rounded-2xl shadow-2xl ${plano.condicaoEspecial ? 'p-5' : 'p-8'} h-full flex flex-col items-center justify-between transition-all duration-300 ${plano.tipo === 'camera' ? 'bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-orange-500/30 hover:border-orange-400/60' : 'bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-cyan-500/30 hover:border-cyan-400/60'}`}>
 
                       <!-- Badge de tipo -->
                       {plano.tipo === 'camera' && (
@@ -209,15 +214,27 @@ const planos: Plano[] = [
                           </div>
 
                           {plano.condicaoEspecial && (
-                            <div class="condicao-box w-full rounded-2xl border-2 border-cyan-400/70 bg-slate-900/60 p-1 overflow-hidden shadow-lg shadow-cyan-500/30 flex items-center justify-center">
-                              <img
-                                src="/images/strem-especial.png"
-                                alt="Consulte condição especial para contratação"
-                                class="condicao-img block w-full h-auto max-h-32 object-contain mx-auto rounded-xl"
-                                loading="eager"
-                                decoding="sync"
-                                fetchpriority="high"
-                              />
+                            <div class="condicao-box w-full rounded-2xl border-2 border-cyan-400/70 bg-slate-900/60 px-3 py-2.5 text-center shadow-lg shadow-cyan-500/30">
+                              <p class="text-[10px] md:text-[11px] font-bold text-white leading-snug">
+                                Consulte condição especial para contratação:
+                              </p>
+                              <div class="my-2 h-px w-4/5 mx-auto bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+
+                              <!-- Imagem com as logos empilhadas (sky-amazon-empilhado.png) -->
+                              <div class="logo-slot w-full bg-white rounded-lg border-2 border-cyan-400/80 flex items-center justify-center overflow-hidden">
+                                <img
+                                  src={condicaoImagem}
+                                  alt="Logos SKY + e Amazon Prime"
+                                  class="w-full h-auto max-h-28 object-contain"
+                                  loading="eager"
+                                  decoding="sync"
+                                />
+                              </div>
+
+                              <!-- Nomes embaixo -->
+                              <p class="mt-2 text-[10px] md:text-[11px] font-bold text-white text-center">
+                                {condicaoNomes}
+                              </p>
                             </div>
                           )}
                         </div>
@@ -549,17 +566,6 @@ const planos: Plano[] = [
   .flip-card-back {
     transform: rotateY(180deg) translateZ(0);
     -webkit-transform: rotateY(180deg) translateZ(0);
-  }
-
-  /* Nitidez máxima da imagem de condição especial */
-  .condicao-img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    filter: contrast(1.08) saturate(1.1);
   }
 
   /* Custom Scrollbar para o verso do card */
